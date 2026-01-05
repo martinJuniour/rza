@@ -1,39 +1,362 @@
-img{
+* {
+    box-sizing: border-box !important;
+}
+
+button {
+    border-radius: 0 !important;
+}
+
+header {
+    background-image: url('../images/RZA-images/background/homepage.png');
+    height: 60vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+/* .promotion {
+    background-image: url('../images/RZA-images/background/homepage.png');
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+} */
+
+.promotion {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-banner {
+    background-color: rgba(48, 57, 76, 0.422);
+    color: white;
+    text-align: center;
+    padding: 30px;
+    width: 60%;
+}
+
+.main-banner h2 {
+    font-size: 100px;
+}
+
+.sub-banner {
+    background-color: rgb(90, 215, 90);
+    text-align: center;
+    padding: 30px;
+    border-radius: 10px;
+    width: 80%;
+}
+
+.sub-banner h3 {
+    color: white;
+}
+
+/* ---------------------------------- */
+.bold {
+    font-weight: 800;
+}
+
+.green {
+    color: rgb(116, 255, 116);
+}
+
+.orange {
+    color: orange;
+}
+
+.white {
+    color: white;
+}
+
+mark {
+    background-color: rgba(48, 57, 76, 0.422);
+}
+
+/* ---------------------------------- */
+img {
     width: 200px;
 }
-.banner .logo img{
-    width: 200px;
+
+.banner .logo img {
+    width: 400px;
 }
-.banner{
+
+.banner {
     display: flex;
     width: 100%;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
 }
-nav{
+
+.search {
+    width: 500px;
+    background-color: orange;
+    height: fit-content;
+}
+
+.search img {
+    width: 10%;
+    width: auto;
+}
+
+.search input {
+    height: 40px;
+    width: 80%;
+    /* background-color: orange; */
+}
+
+.make-booking {
+    background-color: lightgreen;
+    font-size: 20px;
+    height: 60px;
+}
+
+.login {
+    font-size: 20px;
+    height: 60px;
+    color: white;
+}
+
+.nav-btn {
+    width: 100px;
+}
+
+.nav-btn img {
+    width: 50px;
+}
+
+nav {
     color: white;
     display: flex;
     flex-direction: column;
     background-color: orange;
     width: fit-content;
+    position: fixed;
+    right: -20%;
+    top: 0;
+    z-index: 999;
+    height: 100vh;
+    display: flex;
+    justify-content: space-between;
+    width: 18vw;
+    overflow-x: hidden;
+    overflow-y: scroll;
     display: none;
 }
-nav a{
+
+nav.open {
+    right: 0;
+    display: flex;
+}
+
+nav a {
     color: black;
 }
-.more-options{
+
+#close-nav {
+    color: black;
+    cursor: pointer;
+    font-size: 1.4rem;
+}
+
+.more-options {
     display: grid;
     grid-template-columns: repeat(3, auto);
+    width: 100%;
+    margin: 40px 0px;
 }
-.more-options > *{
-    width: 200px;
-    height: 200px;
+
+.more-options>* {
+    width: 90%;
+    height: 300px;
+    /* height: 200px; */
     background-color: orange;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
-footer{
+
+.more-options>* h3 {
+    text-align: center;
+}
+
+.info a {
     color: white;
-    background-color: green;
+}
+
+.upcoming-events:hover {
+    h3 {
+        display: none;
+    }
+
+    .info {
+        display: flex;
+    }
+
+    background-color: rgb(90, 215, 90);
+    color: white;
+}
+
+.sites:hover {
+    h3 {
+        display: none;
+    }
+
+    .info {
+        display: flex;
+    }
+
+    background-color: rgb(90, 215, 90);
+    color: white;
+}
+
+.learning:hover {
+    h3 {
+        display: none;
+    }
+
+    .info {
+        display: flex;
+    }
+
+    background-color: rgb(90, 215, 90);
+    color: white;
+}
+
+.info {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textual {
+    width: 50%;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    padding: 25px;
+}
+
+.textual h3 {
+    font-size: 3rem;
+}
+
+.text-content p {
+    text-align: justify;
+    /* text-align-last: center; */
+}
+
+.text-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+.bordered {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 45%;
+    border-bottom: 3px solid black;
+}
+
+.bordered>* {
+    /* border-top: 3px solid black; */
+    border-right: 3px solid black;
+    /* border-bottom: 3px solid black; */
+    display: flex;
+    justify-content: center;
+    height: 25%;
+    padding: 10px;
+}
+
+.faq {
+    display: flex;
+    flex-direction: column;
+}
+
+.faq h4 {
+    text-decoration: underline;
+}
+
+.k-icon {
+    object-fit: cover;
+    width: 40px;
+}
+
+.image-capture img {
+    width: auto;
+}
+
+.bordered-btn button {
+    height: 100px;
+    width: 300px;
+    border-radius: 10px !important;
+    font-size: 20px;
+    color: white;
+}
+
+.bordered-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imaging {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 15%;
+}
+
+main {
+    max-width: 1600px;
+    margin: auto;
+    background-image: url('../images/RZA-images/pills.png');
+    background-color: rgba(255, 255, 255, 0.524);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+main p {
+    font-size: 18px;
+}
+
+.line {
+    height: 80%;
+    width: 2px;
+    background-color: white;
+}
+
+footer {
+    color: white;
+    background-color: rgb(108, 190, 108);
+    height: 400px;
+    /* width: 100%; */
+}
+
+footer {
     display: grid;
     grid-template-columns: repeat(4, auto);
-    position: absolute;
+    flex-direction: row;
+}
+
+footer > *{
+    width: 25%;
+}
+
+footer .accessebility img {
+    position: relative;
     bottom: 0;
+    width: 100px;
+}
+
+.footer a {
+    color: white;
 }
