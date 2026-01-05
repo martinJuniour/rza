@@ -1,0 +1,39 @@
+img{
+    width: 200px;
+}
+.banner .logo img{
+    width: 200px;
+}
+.banner{
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+}
+nav{
+    color: white;
+    display: flex;
+    flex-direction: column;
+    background-color: orange;
+    width: fit-content;
+    display: none;
+}
+nav a{
+    color: black;
+}
+.more-options{
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+}
+.more-options > *{
+    width: 200px;
+    height: 200px;
+    background-color: orange;
+}
+footer{
+    color: white;
+    background-color: green;
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    position: absolute;
+    bottom: 0;
+}
