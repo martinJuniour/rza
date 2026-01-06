@@ -339,9 +339,6 @@ footer {
     background-color: rgb(108, 190, 108);
     height: 400px;
     /* width: 100%; */
-}
-
-footer {
     display: grid;
     grid-template-columns: repeat(4, auto);
     flex-direction: row;
@@ -352,7 +349,7 @@ footer > *{
 }
 
 footer .accessebility img {
-    position: relative;
+    position: absolute;
     bottom: 0;
     width: 100px;
 }
