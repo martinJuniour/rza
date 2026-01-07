@@ -222,23 +222,9 @@ main {
     max-width: 100%;
     min-height: 1000px;
     margin: auto;
-}
-
-.top-main {
     background: linear-gradient(rgba(0, 0, 0, 0.388), rgba(0, 0, 0, 0.388)), url('../../images/RZA-images/background\ Register.jpg');
-    background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 1000px;
-    height: 100%;
-}
-.bottom-main{
-    min-height: 1000px;
-    background-image: url('../../images/RZA-images/pills.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
 }
 
 main p {
@@ -326,3 +312,90 @@ footer .accessebility img {
 }
 
 /* --------------------------------------------------------------------------------------------------Constants on all pages */
+
+.no-headings {
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+}
+
+.no-headings>* {
+    padding: 2rem 2rem 2rem 0rem;
+}
+
+
+.content {
+    padding: 1% 1% 0 10%;
+}
+
+.content .headings h1 {
+    font-size: 150px;
+    font-weight: 600;
+}
+
+.content .headings h2 {
+    font-size: 50px;
+}
+
+
+form {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+}
+
+.input {
+    width: 50%;
+    border-right: 3px solid white;
+}
+
+.input input::placeholder {
+    color: white;
+    text-align: start;
+}
+
+.input form input:not(input[type="submit"]){
+    background-color: rgb(108, 190, 108);
+    height: 80px;
+    width: 100%;
+    border-style: none;
+    opacity: 90%;
+    color: white;
+    padding-left: 10px;
+}
+.input form input[type="submit"]{
+    width: 20%;
+}
+
+.action {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.input form .action a {
+    color: white;
+    font-size: 20px;
+}
+
+.input .action form .action input[type="submit"] {
+    width: 30%;
+    height: 60px;
+}
+
+
+.register {
+    border-left: 3px solid white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+}
+
+.register button {
+    height: 40%;
+    padding: 2rem;
+    width: 70%;
+    border-radius: 10px !important;
+}
