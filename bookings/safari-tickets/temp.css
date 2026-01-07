@@ -1,10 +1,5 @@
-/* --------------------------------------------------------------------------------------------------Constants on all pages */
 * {
     box-sizing: border-box !important;
-}
-
-input {
-    outline: none !important;
 }
 
 button {
@@ -12,8 +7,21 @@ button {
 }
 
 header {
-    background-color: rgba(255, 255, 255, 0);
+    background: linear-gradient(rgba(0, 0, 0, 0.219), rgba(0, 0, 0, 0.123)), url('../../images/RZA-images/book\ A\ visit.jpg') center;
+    height: 93vh;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
 }
+
+/* .promotion {
+    background-image: url('../images/RZA-images/background/homepage.png');
+    height: 300px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+} */
+
 
 /* ---------------------------------- */
 .bold {
@@ -63,8 +71,8 @@ img {
 .items {
     display: flex;
     flex-direction: row;
+    justify-content: end;
     width: 100%;
-    justify-content: flex-end;
     align-items: center;
     margin-left: 1rem;
 }
@@ -217,36 +225,159 @@ nav a {
     color: white;
 }
 
-/* --------------------------------Change main on differnt pages */
+.more-options {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    width: 100%;
+    margin: 40px 0px;
+}
+
+.more-options>* {
+    width: 90%;
+    height: 300px;
+    /* height: 200px; */
+    background-color: orange;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.more-options>* h3 {
+    text-align: center;
+}
+
+.info a {
+    color: white;
+}
+
+.upcoming-events:hover {
+    h3 {
+        display: none;
+    }
+
+    .info {
+        display: flex;
+    }
+
+    background-color: rgb(90, 215, 90);
+    color: white;
+}
+
+.sites:hover {
+    h3 {
+        display: none;
+    }
+
+    .info {
+        display: flex;
+    }
+
+    background-color: rgb(90, 215, 90);
+    color: white;
+}
+
+.learning:hover {
+    h3 {
+        display: none;
+    }
+
+    .info {
+        display: flex;
+    }
+
+    background-color: rgb(90, 215, 90);
+    color: white;
+}
+
+.info {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.textual {
+    width: 50%;
+    border-top: 3px solid black;
+    border-left: 3px solid black;
+    padding: 25px;
+}
+
+.textual h3 {
+    font-size: 3rem;
+}
+
+.text-content p {
+    text-align: justify;
+    /* text-align-last: center; */
+}
+
+.text-content {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 50px;
+}
+
+
+.faq {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.k-icon {
+    object-fit: cover;
+    width: 40px;
+}
+
+.image-capture img {
+    width: auto;
+}
+
+.bordered-btn button {
+    height: 100px;
+    width: 300px;
+    border-radius: 10px !important;
+    font-size: 20px;
+    color: white;
+}
+
+.bordered-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imaging {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 15%;
+}
+
 main {
     max-width: 100%;
     min-height: 1000px;
     margin: auto;
-}
-
-.top-main {
-    background: linear-gradient(rgba(0, 0, 0, 0.388), rgba(0, 0, 0, 0.388)), url('../../images/RZA-images/background\ Register.jpg');
-    background-attachment: fixed;
+    background: linear-gradient(rgba(2, 19, 43, 0.253)), url('../../images/RZA-images/savannah\ biome.jpg') center;
+    /* background-color: rgba(255, 255, 255, 0.524); */
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 1000px;
-    height: 100%;
-}
-.bottom-main{
-    min-height: 1000px;
-    background-image: url('../../images/RZA-images/pills.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
 }
 
 main p {
     font-size: 18px;
 }
 
-/* --------------------------------Change main on differnt pages */
-
+.line {
+    height: 80%;
+    width: 2px;
+    background-color: white;
+}
 
 footer {
     color: white;
@@ -312,6 +443,9 @@ footer h4 {
     grid-column: 4 / span 1;
 }
 
+body {
+    overflow-x: scroll !important;
+}
 
 footer .accessebility img {
     position: absolute;
@@ -325,92 +459,37 @@ footer .accessebility img {
     color: white;
 }
 
-/* --------------------------------------------------------------------------------------------------Constants on all pages */
-
-
-.top-main h1{
-    font-size: 150px;
-}
-.top-main h2{
-    font-size: 50px;
-}
-.textual p{
-    width: 50%;
-}
-.textual{
-    padding: 1% 1% 0 10%;
-}
-.bottom-main h1{
-    width: 100%;
-    padding: 1rem;
-    line-height: 2cm;
-    text-align: center;
-}
-
-form{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    /* margin-top: 3rem; */
-    gap: 2rem;
-    padding: 0rem 0rem 1rem 2rem;
-}
-
-.article{
-    width: 50%;
-    border-left: 1px dashed rgba(0, 0, 0, 0.167);
-    padding: 1rem;
-}
-.article .save-the-rhino img{
-    width: 70%;
-    align-self: center;
-    border: 30px solid orange;
-    border-radius: 100px 20px 80px 30px;
-    outline: 2px solid rgb(17, 19, 17);
-}
-.save-the-rhino{
+.heading{
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: start;
-}
-
-.form{
+    align-items: center;
     width: 50%;
-    border-right: 1px dashed rgba(0, 0, 0, 0.167);
-    border-width: 3px;
+    margin-top: 50px;
+}
+.heading>* {
+    background-color: rgba(0, 75, 78, 0.623);
+    color: white;
+    width: 70%;
     padding: 1rem;
 }
-input::placeholder {
-    color: white;
-    text-align: start;
+
+.heading h1 {
+    font-size: 60px;
+    text-align: center;
+    margin: 0 !important;
 }
 
-.form .check input[type="checkbox"]{
-    height: 30px !important;
-    width: 40px !important;
-}
-/* form .check input[type="checkbox"]:checked{
-    background-color: orange;
-    color: orange;
-} */
-.check{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
+.heading h2 {
+    width: fit-content !important;
+    margin: 0 !important;
+    /* align-self: center; */
 }
 
-.form input:not(input[type="submit"]){
-    background-color: orange;
-    height: 80px;
+.inputs{
+    width: 30%; 
+}
+
+form input{
+    height: 60px;
     width: 100%;
-    border-style: none;
-    opacity: 90%;
-    color: white;
-    padding-left: 10px;
-}
-.form input[type="submit"]{
-    width: 20%;
 }

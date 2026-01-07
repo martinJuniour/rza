@@ -222,27 +222,13 @@ main {
     max-width: 100%;
     min-height: 1000px;
     margin: auto;
-}
-
-.top-main {
-    background: linear-gradient(rgba(0, 0, 0, 0.388), rgba(0, 0, 0, 0.388)), url('../../images/RZA-images/background\ Register.jpg');
-    background-attachment: fixed;
+    background: linear-gradient(rgba(0, 0, 0, 0.603), rgba(0, 0, 0, 0.644)), url('../images/RZA-images/pocupine.jpg') center;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 1000px;
-    height: 100%;
-}
-.bottom-main{
-    min-height: 1000px;
-    background-image: url('../../images/RZA-images/pills.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* background-attachment: fixed; */
 }
 
 main p {
-    font-size: 18px;
+    font-size: 18px;    
 }
 
 /* --------------------------------Change main on differnt pages */
@@ -327,90 +313,19 @@ footer .accessebility img {
 
 /* --------------------------------------------------------------------------------------------------Constants on all pages */
 
-
-.top-main h1{
-    font-size: 150px;
-}
-.top-main h2{
-    font-size: 50px;
-}
-.textual p{
-    width: 50%;
-}
-.textual{
+.content {
+    color: white;
     padding: 1% 1% 0 10%;
 }
-.bottom-main h1{
-    width: 100%;
-    padding: 1rem;
-    line-height: 2cm;
-    text-align: center;
+.content h1{
+    font-size: 150px;
 }
-
-form{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    /* margin-top: 3rem; */
-    gap: 2rem;
-    padding: 0rem 0rem 1rem 2rem;
+.content p{
+    font-size: 40px;
 }
-
-.article{
-    width: 50%;
-    border-left: 1px dashed rgba(0, 0, 0, 0.167);
-    padding: 1rem;
+.content h2{
+    font-size: 50px;
 }
-.article .save-the-rhino img{
-    width: 70%;
-    align-self: center;
-    border: 30px solid orange;
-    border-radius: 100px 20px 80px 30px;
-    outline: 2px solid rgb(17, 19, 17);
-}
-.save-the-rhino{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-}
-
-.form{
-    width: 50%;
-    border-right: 1px dashed rgba(0, 0, 0, 0.167);
-    border-width: 3px;
-    padding: 1rem;
-}
-input::placeholder {
-    color: white;
-    text-align: start;
-}
-
-.form .check input[type="checkbox"]{
-    height: 30px !important;
-    width: 40px !important;
-}
-/* form .check input[type="checkbox"]:checked{
-    background-color: orange;
-    color: orange;
-} */
-.check{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    align-items: center;
-}
-
-.form input:not(input[type="submit"]){
-    background-color: orange;
-    height: 80px;
-    width: 100%;
-    border-style: none;
-    opacity: 90%;
-    color: white;
-    padding-left: 10px;
-}
-.form input[type="submit"]{
-    width: 20%;
+.actionable{
+    margin-top: 10%;
 }
