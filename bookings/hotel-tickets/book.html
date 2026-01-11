@@ -7,11 +7,12 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="temp.css">
+    <link rel="stylesheet" href="book.css">
     <script src="../../home/utilis.js" defer></script>
 </head>
 
 <body>
+
 
     <!-- Main section for all content -->
     <main>
@@ -61,14 +62,57 @@
             </nav>
         </header>
 
-        <div class="intro">
-            <h1 class="first"><span class="green">Fancy</span> a night under the sky <span class="green">...</span></h1><br>
-            <h1 class="second"><span class="green">...</span>or a <span class="orange">safari themed</span> stroll during the day ?</h1>
-            <br>
+        <div class="all">
+            <div class="inputs">
+                <h2><span class="orange">Book</span> for up to a week in our Hotel</h2>
+                <form action="" method="post">
+                    <input type="text" name="firstName" id="firstName" placeholder="Enter First Name">
+                    <br><br>
+                    <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name">
+                    <br><br>
+                    <input type="email" name="email" id="email" placeholder="Enter Email Address">
+                    <br><br>
+                    <div class="rangeOfStay">
+                        <input type="date" name="startDate" id="startDate" placeholder="When would you start yur stay">
+                        <br><br>
+                        <input type="date" name="finDate" id="finDate"
+                            placeholder="When would you like to end your stay">
+                        <br><br>
+                    </div>
+                    <div class="qty-visitors">
+                        <label for="numOfVisitors">Enter Number of Visitors</label>
+                        <br>
+                        <input type="number" name="numOfVisitors" id="numOfVisitors">
+                        <br><br>
+                    </div>
+                    <div class="qty-rooms">
+                        <label for="numOfRooms">Enter Number of rooms You'd like to book</label>
+                        <input type="number" name="numOfRooms" id="numOfRooms">
+                        <br><br>
+                    </div>
 
-            <div class="next">
-                <a href="" class="btn btn-warning"><span class="white">Next </span>→</a>
+                    <p class="disclaimer">
+                        By booking with us, you confirm your details are correct.
+                        Bookings are only confirmed once you receive our confirmation.
+                        Prices, fees, and taxes may change before confirmation.
+                        Payment must be completed or the booking may be cancelled.
+                        Cancellations and changes follow the policy shown at checkout.
+                        Guests must follow occupancy limits, check-in/out times, and house rules.
+                        Damage or serious rule breaches may result in extra charges or removal.
+                        Contact us before booking if you have special requests or questions.
+                    </p>
+
+                    <div class="check">
+                        <input type="checkbox" name="aggree" id="aggree">
+                        <label for="aggree"><span class="bold">I aggree that the details above are corrcect and I have read and understood the above disclaimer</span></label>
+                        <br><br>
+                    </div>
+
+                    <input type="submit" name="makeBooking" value="Proceed to Payment" class="btn btn-success">
+
+                </form>
             </div>
+            <div class="images"></div>
         </div>
 
     </main>
