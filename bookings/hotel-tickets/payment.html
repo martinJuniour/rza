@@ -3,17 +3,19 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="temp.css">
+    <link rel="stylesheet" href="../safari-tickets/payment.css">
+    <link rel="stylesheet" href="payment.css">
     <script src="../../home/utilis.js" defer></script>
 </head>
 
 <body>
-    <main class="loginMain">
+
+    <!-- Main section for all content -->
+    <main>
         <header>
 
             <!-- Top banner with search bar -->
@@ -26,7 +28,11 @@
                         <img src="../../images/RZA-images/searchIcon.svg" alt="Search Icon">
                         <input type="text" id="search" placeholder="Enter a Search Item...">
                     </div>
-
+                    <div class="actions">
+                        <div class="action-btn">
+                            <a class="login btn btn-success">Martin.J</a>
+                        </div>
+                    </div>
                     <div class="nav-btn">
                         <img src="../../images/menu.png" id="nav-btn">
                     </div>
@@ -54,41 +60,51 @@
                     <a href="">Report an Issue</a>
                 </div>
             </nav>
-
         </header>
 
+        <section class="payment">
 
-        <section class="content">
-            <div class="headings">
-                <span class="bold white">
-                    <h1>Welcome back</h1>
-                </span>
-                <br><br>
-                <span class="bold white">
-                    <h2>Login below</h2>
-                </span>
+            <div class="head">
+                <h1><span class="white">Hotel <span class="orange">booking payment</span><span class="white"> for Martin Juniour</span></span></h1>
+                <h3><span class="white">Please input payment detail below</span></h3>
             </div>
 
-            <section class="no-headings">
-                <section class="input">
-                    <form action="" method="post">
-                        <input type="email" name="user-name" id="user-name" placeholder="Enter your email Address">
-                        <br>
-                        <input type="password" name="pass" id="pass" placeholder="Enter your password">
-                        <br>
-                        <div class="action">
-                            <input type="submit" value="Login" name="login" class="login btn btn-success">
-                            <a href="">Forgot Password</a>
+            <div class="inputs">
+                <form action="" method="post">
+                    <div class="data-section">
+                        <input type="text" name="fullName" id="fullName" placeholder="Enter Full Name on card">
+                        <br><br>
+                        <input type="text" name="sortCode" id="sortCode" placeholder="Enter Sort Code">
+                        <br><br>
+                        <input type="text" name="cardNumber" id="cardNumber" placeholder="Enter Card Number">
+                        <br><br>
+                        <input type="text" name="cvv" id="cvv" placeholder="Enter CVV Code">
+                        <div class="a">
+                            <a href="">What is a CVV</a>
                         </div>
-                    </form>
-                </section>
+                        <br><br>
+                        <div class="check">
+                            <input type="checkbox" name="correctDetails" id="correctDetails">
+                            <label for="correctDetails"><span class="bold white">I confirm the above details are correct
+                                    and my bank to be charged the agreed amount by RZA</span></label>
+                        </div>
+                    </div>
 
+                    <div class="pay-btn">
+                        <div class="submit-btn">
+                            <input type="submit" name="payed" id="payed" value="Pay £226.99">
+                        </div>
+                        <a href=""><span class="bold">You have 320 points.</span></a>
+                        <div class="points">
+                            <a href=""><span class="orange">I want to use these</span></a>
+                            <br><br>
+                            <a href=""><span class="green">I want to save these</span></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
 
-                <section class="register">
-                    <button class="btn btn-warning">I'm new to RZA</button>
-                </section>
-
-            </section>
+        </section>
 
     </main>
 
@@ -131,6 +147,7 @@
         </div>
 
     </footer>
+
 </body>
 
 </html>

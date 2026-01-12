@@ -368,7 +368,7 @@ main {
     /* max-width: 100%; */
     min-height: 1000px;
     margin: auto;
-    background: linear-gradient(rgba(0, 0, 0, 0.461)), url('../../images/RZA-images/stairs.jpg') center;
+    background: linear-gradient(rgba(0, 0, 0, 0.589)), url('../../images/RZA-images/stairs.jpg') center;
     /* background-color: rgba(255, 255, 255, 0.524); */
     background-repeat: repeat;
     background-size: 60%;
@@ -466,6 +466,12 @@ footer .accessebility img {
 
 /* ----------------------------------------------------------------------------- */
 
+/* u{
+    color: rgb(90, 226, 90);
+} */
+.book-heading{
+    border-bottom: 5px solid orange;
+}
 .inputs h2{
     color: white;
 }
@@ -495,9 +501,99 @@ form input:not(input[type="submit"]){
     width: 100%;
     border-style: none;
     opacity: 90%;
-    color: white;
+    color: black;
     padding-left: 10px;
 }
 form input[type="submit"]{
     width: 20%;
+}
+.qty-visitors, .qty-rooms{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.qty-visitors input, .qty-rooms input{
+    width: 20% !important;
+}
+.qty-visitors label, .qty-rooms label{
+    width: 80%;
+    font-size: 30px;
+}
+
+.all{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat(3, auto);
+    padding: 0% 0% 1% 2%;
+}
+.inputs{
+    grid-column: 1 / span 1;
+    grid-row: 1 / span 3;
+    margin: 3%;
+}
+.disclaimer{
+    text-align: justify;
+    text-align-last: center;
+    font-weight: 600;
+}
+.images{
+    grid-column: 2 / span 1;
+    grid-row: 1 / span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    gap: .5rem;
+    margin: 3%;
+}
+.images img{
+    width: 400px;
+    margin:0% 4%;
+    border-radius: 10px;
+}
+.left-align{
+    align-self: flex-start;
+}
+.smaller-section{
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+    padding: 1%;
+    margin: 3%;
+    /* border-top: 3px solid white; */
+}
+.smaller-section h1{
+    text-align: center;
+}
+.room{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 2%;
+    border-left: 3px solid white;
+}
+.room h2{
+    text-align: center;
+}
+.room-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+.room img:not(.arrow){
+    width: 50%;
+}
+.arrow-background{
+    border: 10px solid orange;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.arrow{
+    height: 100%;
+    width: 50%;
+    /* border: 10px solid orange; */
 }

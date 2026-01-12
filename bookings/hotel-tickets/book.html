@@ -64,7 +64,12 @@
 
         <div class="all">
             <div class="inputs">
-                <h2><span class="orange">Book</span> for up to a week in our Hotel</h2>
+                <div class="book-heading">
+                    <h2 style="font-size: 50px;"><span class="orange">Book</span> for up to a week in
+                        our Hotel</h2>
+                </div>
+
+                <br><br>
                 <form action="" method="post">
                     <input type="text" name="firstName" id="firstName" placeholder="Enter First Name">
                     <br><br>
@@ -73,24 +78,26 @@
                     <input type="email" name="email" id="email" placeholder="Enter Email Address">
                     <br><br>
                     <div class="rangeOfStay">
-                        <input type="date" name="startDate" id="startDate" placeholder="When would you start yur stay">
+                        <label for="startDate">When would you stay start</label>
+                        <input type="date" name="startDate" id="startDate" placeholder="When would you start your stay">
                         <br><br>
+                        <label for="finDate">When would you stay end</label>
                         <input type="date" name="finDate" id="finDate"
                             placeholder="When would you like to end your stay">
                         <br><br>
                     </div>
                     <div class="qty-visitors">
                         <label for="numOfVisitors">Enter Number of Visitors</label>
-                        <br>
                         <input type="number" name="numOfVisitors" id="numOfVisitors">
                         <br><br>
                     </div>
+                    <br>
                     <div class="qty-rooms">
                         <label for="numOfRooms">Enter Number of rooms You'd like to book</label>
                         <input type="number" name="numOfRooms" id="numOfRooms">
                         <br><br>
                     </div>
-
+                    <br><br>    
                     <p class="disclaimer">
                         By booking with us, you confirm your details are correct.
                         Bookings are only confirmed once you receive our confirmation.
@@ -102,17 +109,38 @@
                         Contact us before booking if you have special requests or questions.
                     </p>
 
+                    <br><br>
                     <div class="check">
                         <input type="checkbox" name="aggree" id="aggree">
-                        <label for="aggree"><span class="bold">I aggree that the details above are corrcect and I have read and understood the above disclaimer</span></label>
+                        <label for="aggree"><span class="bold" style="font-size: 20px;font-weight: 400;">I aggree that the details above are corrcect and I have
+                                read and understood the above disclaimer</span></label>
                         <br><br>
                     </div>
-
+                    <br>
                     <input type="submit" name="makeBooking" value="Proceed to Payment" class="btn btn-success">
 
                 </form>
             </div>
-            <div class="images"></div>
+            <div class="images">
+                <img src="../../images/RZA-images/pool.jpg" alt="Steaming room with wooden sits">
+                <img class="left-align" src="../../images/RZA-images/hotel2.jpg" alt="Outdoor hotel with trees around">
+                <img src="../../images/RZA-images/pillow.jpg" alt="Pillow on a chouch with an owl drawing">
+            </div>
+            <div class="smaller-section">
+                <h1><span class="white">Suggested Room Size</span><span class="green"> based</span><span class="white">
+                        on number of visitors</span></h1>
+
+                <div class="room">
+                    <h2><span class="white"><span class="orange">Double </span>Bed: Large (4.5m x 4.5m)</span></h2>
+                    <div class="room-img">
+                        <br>
+                        <img src="../../images/RZA-images/green-bed.jpg" alt="A green hotel bed">
+                        <div class="arrow-background">
+                            <img class="arrow" src="../../images/RZA-images/backArrWhite.png" alt="Arrow for next item">
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
     </main>

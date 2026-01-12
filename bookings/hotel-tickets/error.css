@@ -1,0 +1,19 @@
+/* No need fpr defauly page sylings as page is styled by a second css file: login-MAin*/
+.err{
+    padding: 0% 0% 1% 2%;
+}
+.err h1{
+    font-size: 50px;
+    text-align: center;
+}
+.main-Oops{
+    font-size: 100px !important;
+}
+.err img{
+    width: 300px;
+}
+.oops-image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
