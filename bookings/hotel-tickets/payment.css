@@ -6,3 +6,19 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.points{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+    /* border: 3px solid orange; */
+    padding: 1%;
+}
+.points a{
+    border-radius: .25rem;
+    background-color: black;
+    border: 1px solid white;
+}

@@ -7,7 +7,7 @@
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../../bookings/safari-tickets/payment.css">
+    <link rel="stylesheet" href="../safari-tickets/congrats.css">
     <link rel="stylesheet" href="temp.css">
     <script src="../../home/utilis.js" defer></script>
 </head>
@@ -15,7 +15,7 @@
 <body>
 
     <!-- Main section for all content -->
-    <main>
+    <main class="hotelBooking">
         <header>
 
             <!-- Top banner with search bar -->
@@ -62,46 +62,20 @@
             </nav>
         </header>
 
-        <section class="all-features">
-            <h1><span class="white"><u>Accessebility</u></span></h1>
-            <form action="" class="access-form">
+        <section class="done">
+            <h1>Con<span class="green">grat</span>ulations Martin<span class="orange">.</span></h1>
+            <p>
+                    Your <span class="green">Hotel Booking was</span> successful.
+                    Below is your <span class="orange">reference number</span> for the hotel booking. You can always
+                    find this in your profile
+                    management Tab. See verification email for further details about
+                    cancellations and more.
+            </p>
+            <br><br>
+            <input type="text" value="#779726-992-290UU" readonly>
 
-                <div class="option">
-                    <label for="font-size">Font Size</label>
-                    <select name="font-size" id="font-size">
-                        <option value="default" selected>Default (Medium)</option>
-                        <option value="small">Small</option>
-                        <option value="large">Large</option>
-                    </select>
-                </div>
 
-                <br><br>
-
-                <div class="option">
-                    <label for="display-theme">Display Theme</label>
-                    <select name="display-theme" id="display-theme">
-                        <option value="light">Default (Light)</option>
-                        <option value="dark">Dark</option>
-                    </select>
-                </div>
-                <br><br>
-
-                <div class="option check">
-                    <label for="image-option">View Images</label>
-                    <input type="checkbox" name="view-images" id="view-images">
-                </div>
-
-                <br><br>
-
-                <div class="option check">
-                    <label for="bold-text">Bold Text</label>
-                    <input type="checkbox" name="bold-text" id="bold-text">
-                </div>
-
-                <input type="submit" name="save-access" id="save-access" class="btn btn-success" value="Save and Apply">
-            </form>
         </section>
-
     </main>
 
     <!-- Footer Section : constant on all pages -->

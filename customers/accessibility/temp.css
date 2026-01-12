@@ -1,0 +1,41 @@
+.all-features form{
+    display: flex;
+    flex-direction: column !important;
+    width: 50%;
+    align-items: flex-start;
+    gap: 1rem !important;
+}
+.all-features{
+    padding: 0% 0% 1% 10%;
+}
+
+.check{
+    align-items: flex-start !important;
+    width: 100%;
+    justify-content: left;
+}
+
+main {
+    /* max-width: 100%; */
+    min-height: 1300px;
+    margin: auto;
+    background: linear-gradient(rgba(40, 67, 104, 0.687)), url('../../images/RZA-images/savannah\ biome.jpg') center;
+    /* background-color: rgba(255, 255, 255, 0.524); */
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.option label{
+    background-color: orange;
+    /* padding: 5%; */
+    font-size: 30px;
+    color: white;
+}
+.option:not(.check){
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+input[type="submit"]{
+    padding: 2rem;
+}
