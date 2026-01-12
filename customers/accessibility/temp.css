@@ -4,17 +4,21 @@
     width: 50%;
     align-items: flex-start;
     gap: 1rem !important;
+    margin: 2%;
 }
 .all-features{
     padding: 0% 0% 1% 10%;
 }
 
-.check{
-    align-items: flex-start !important;
+.check-access{
     width: 100%;
-    justify-content: left;
+    justify-content: space-between;
+    align-items: center;
 }
-
+.check-access input{
+    align-self: auto !important;
+    width: 50px !important;
+}
 main {
     /* max-width: 100%; */
     min-height: 1300px;
@@ -24,16 +28,21 @@ main {
     background-repeat: no-repeat;
     background-size: cover;
 }
+.option{
+    border: 2px solid white;
+    padding: 1%;
+}
 .option label{
     background-color: orange;
-    /* padding: 5%; */
+    padding: 5%;
     font-size: 30px;
     color: white;
 }
 .option:not(.check){
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
+    width: 100%;
 }
 
 input[type="submit"]{
