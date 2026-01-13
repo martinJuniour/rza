@@ -9,12 +9,13 @@
     .text-content{
         display: flex;
         flex-direction: column;
+        padding: 1rem;
     }
     .text-content > * {
         width: 100%;
     }
     .bordered{
-        padding: 25px;
+        margin-top: 2rem;
     }
 
 }

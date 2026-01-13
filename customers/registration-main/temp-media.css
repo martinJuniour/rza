@@ -5,8 +5,24 @@
     form{
         display: flex;
         flex-direction: column;
+        padding: 1rem;
     }
     form > *{
         width: 100%;
+    }
+    .form{
+        width: 100%;
+    }
+    .article{
+        width: 100%;
+    }
+    .ts-cs-create input{
+        width: 100%;
+    }
+    .textual p{
+        width: 100%;
+    }
+    .textual{
+        padding: 1rem;
     }
 }

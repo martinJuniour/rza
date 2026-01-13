@@ -333,7 +333,7 @@ footer .accessebility img {
     font-size: clamp(3rem, 6vw, 5rem);
 }
 .top-main h2{
-    font-size: 50px;
+    font-size: clamp(1rem, 6vw, 5rem);
 }
 .textual p{
     width: 50%;
@@ -344,8 +344,9 @@ footer .accessebility img {
 .bottom-main h1{
     width: 100%;
     padding: 1rem;
-    line-height: 2cm;
+    line-height: 3cm;
     text-align: center;
+    font-size: clamp(.5rem, 6vw, 4rem);
 }
 
 form{
@@ -414,4 +415,11 @@ input::placeholder {
 }
 .form input[type="submit"]{
     width: 20%;
+}
+
+.faq .faq-img-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
