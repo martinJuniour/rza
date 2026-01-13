@@ -1,6 +1,7 @@
 /* --------------------------------------------------------------------------------------------------Constants on all pages */
 * {
     box-sizing: border-box !important;
+    outline: 3px solid magenta;
 }
 
 input {
@@ -221,7 +222,7 @@ nav a {
 main {
     max-width: 100%;
     min-height: 1000px;
-    margin: auto;
+    position: relative;
 }
 
 .top-main {
@@ -229,7 +230,7 @@ main {
     background-attachment: fixed;
     background-repeat: no-repeat;
     background-size: cover;
-    min-height: 1000px;
+    /* min-height: 1000px; */
     height: 100%;
 }
 .bottom-main{
@@ -242,7 +243,7 @@ main {
 }
 
 main p {
-    font-size: 18px;
+    font-size: clamp(.5rem, 6vw, 1rem);
 }
 
 /* --------------------------------Change main on differnt pages */
@@ -329,7 +330,7 @@ footer .accessebility img {
 
 
 .top-main h1{
-    font-size: 150px;
+    font-size: clamp(3rem, 6vw, 5rem);
 }
 .top-main h2{
     font-size: 50px;

@@ -247,15 +247,16 @@ nav a {
     color: white;
 }
 .more-options {
-    display: grid;
-    grid-template-columns: repeat(3, auto);
+    display: flex;
+    /* grid-template-columns: repeat(3, auto); */
     width: 100%;
     margin: 40px 0px;
 }
 
 .more-options>* {
-    width: 90%;
+    width: 80%;
     height: 300px;
+    margin: 1%;
     /* height: 200px; */
     background-color: orange;
     cursor: pointer;
@@ -264,7 +265,7 @@ nav a {
     align-items: center;
 }
 
-.more-options>* h3 {
+.more-options>* h3, h5 {
     text-align: center;
 }
 
@@ -374,7 +375,8 @@ nav a {
 }
 
 .image-capture img {
-    width: 100%;
+    max-width: 100%;
+    min-width: 76%;
 }
 
 .bordered-btn button {
@@ -422,7 +424,7 @@ main p {
 footer {
     color: white;
     background-color: rgb(108, 190, 108);
-    height: 400px;
+    min-height: 400px;
     max-width: 100%;
     position: relative;
     display: grid;

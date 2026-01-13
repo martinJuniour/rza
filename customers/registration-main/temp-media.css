@@ -1,0 +1,12 @@
+@media(max-width: 1000px){
+    * {
+        outline: 3px solid magenta;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+    form > *{
+        width: 100%;
+    }
+}
