@@ -12,6 +12,7 @@ header {
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
+    min-width: 100%;
 }
 
 /* .promotion {
@@ -39,7 +40,7 @@ header {
 }
 
 .main-banner h2 {
-    font-size: 100px;
+    font-size: clamp(1rem, 6vw, 5rem);
 }
 
 .sub-banner {
@@ -179,7 +180,7 @@ nav {
     height: 80%;
     display: flex;
     /* justify-content: space-between; */
-    width: 20vw;
+    width: 30%;
     overflow-x: hidden;
     overflow-y: scroll;
     display: none;
@@ -215,9 +216,9 @@ nav a {
     font-size: 1.4rem;
 }
 
-.cancel{
+/* .cancel{
     height: 10%;
-}
+} */
 
 .home{
     background-color: white;
@@ -325,7 +326,7 @@ nav a {
 }
 
 .textual h3 {
-    font-size: 3rem;
+    font-size: clamp(1rem, 6vw, 3rem);
 }
 
 .text-content p {
@@ -373,7 +374,7 @@ nav a {
 }
 
 .image-capture img {
-    width: auto;
+    width: 100%;
 }
 
 .bordered-btn button {
@@ -409,7 +410,7 @@ main {
 }
 
 main p {
-    font-size: 18px;
+    font-size: clamp(.5rem, 6vw, 1rem);
 }
 
 .line {
@@ -450,6 +451,7 @@ footer h4{
 }
 .col-1 img{
     width: 50%;
+    object-fit: cover;
 }
 
 .col-2{ grid-column: 2 / span 1;}
