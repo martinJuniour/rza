@@ -12,6 +12,7 @@
     <link rel="stylesheet" href="../../home/constants.css">
     <link rel="stylesheet" href="temp-media.css">
     <script src="../../home/utilis.js" defer></script>
+    <script src="utilis.js" defer></script>
 </head>
 
 <body>
@@ -81,9 +82,9 @@
         </section>
         <br>
         <section class="bottom-main">
-
+            
             <section class="data-section">
-                <form action="" method="post">
+                <form action="register.php" method="post">
                     <section class="form">
                         <span class="bold white">
                             <h1><mark>Please read all information and enter data where required</mark></h1>
@@ -98,8 +99,11 @@
                         <br><br>
                         <input type="password" name="passWordCon" id="passWordCon" placeholder="Confirm Password">
                         <br><br>
+                        <input type="text" name="postalCode" id="postalCode" placeholder="Enter your Post Code">
+                        <br><br>
                         <div class="check">
-                            <input type="checkbox" name="marketing" id="marketing">
+                            <input type="checkbox" id="marketing" required>
+                            <input type="hidden" name="marketing" id="hiddenInput">
                             <label for="marketing">Receive Marketing Emails</label>
                         </div>
                     </section>

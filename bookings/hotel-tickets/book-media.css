@@ -1,0 +1,41 @@
+@media(max-width: 1000px){
+    main{
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .all{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1rem;
+    }
+    
+    form input[type="submit"]{
+        width: 100%;
+    }
+    .images{
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-top: 2px solid orange;
+        border-bottom: 2px solid orange;
+        padding: 2rem;
+        align-items: center;
+    }
+    .images img{
+        width: 80%;
+        outline: 2px solid orange;
+    }
+    .left-align{
+        align-self: unset;
+    }
+    .room-img{
+        display: flex;
+        flex-direction: column;
+    }
+    .below{
+        display: block;
+        text-align: center;
+    }
+}

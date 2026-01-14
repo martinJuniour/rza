@@ -1,0 +1,38 @@
+@media(max-width: 1000px){
+    .heading{
+        width: 100%;
+        padding: 1rem;
+    }
+    .heading > *{
+        width: 100%;
+    }
+    header{
+        height: unset;
+        padding-bottom: 50px;
+    }
+    .all{
+        margin: 0;
+        padding: 1rem;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .all > *{
+        width: 100%;
+    }
+    .price{
+        position: unset;
+    }
+    .price .acc-price h4{
+        width: 100%;
+        text-align: center;
+    }
+    .tickets{
+        width: 100%;
+    }
+    form input:not(input[type="submit"]) {
+        width: 100%;
+    }
+    form input[type="submit"]{
+        width: 100%;
+    }
+}
