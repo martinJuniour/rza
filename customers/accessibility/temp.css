@@ -1,7 +1,7 @@
 .all-features form{
     display: flex;
     flex-direction: column !important;
-    width: 50%;
+    width: 60%;
     align-items: flex-start;
     gap: 1rem !important;
     margin: 2%;
@@ -31,11 +31,12 @@ main {
 .option{
     border: 2px solid white;
     padding: 1%;
+    /* background-color: black; */
 }
 .option label{
     background-color: orange;
     padding: 5%;
-    font-size: 30px;
+    font-size: clamp(1rem, 6vw, 2rem);
     color: white;
 }
 .option:not(.check){

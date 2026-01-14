@@ -1,6 +1,9 @@
 @media(max-width: 1000px){
-    * {
+    /* * {
         outline: 3px solid magenta;
+    } */
+    header{
+        height: fit-content;
     }
     form{
         display: flex;
@@ -20,9 +23,21 @@
         width: 100%;
     }
     .textual p{
-        width: 100%;
+        width: 90%;
     }
     .textual{
         padding: 1rem;
+    }
+    .article .save-the-rhino img{
+        width: 90%;
+        border: 10px solid orange;
+        border-radius: 0.25rem;
+        outline: 0;
+    }
+    .bottom-main h1{
+        text-align: left;
+        text-align-last: justify;
+        padding: 0;
+        line-height: 2.5cm;
     }
 }

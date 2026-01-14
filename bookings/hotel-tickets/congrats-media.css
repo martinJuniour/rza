@@ -1,0 +1,14 @@
+@media (max-width: 1000px){
+    main{
+        background-position: center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-size: cover;
+    }
+    .done{
+        padding: 1rem;
+    }
+    .done input{
+        padding: 1rem;
+    }
+}

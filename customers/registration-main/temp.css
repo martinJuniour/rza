@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------------------------------------------Constants on all pages */
 * {
     box-sizing: border-box !important;
-    outline: 3px solid magenta;
+    /* outline: 3px solid magenta; */
 }
 
 input {
@@ -252,7 +252,7 @@ main p {
 footer {
     color: white;
     background-color: rgb(108, 190, 108);
-    height: 400px;
+    min-height: 400px;
     max-width: 100%;
     position: relative;
     display: grid;
@@ -415,11 +415,4 @@ input::placeholder {
 }
 .form input[type="submit"]{
     width: 20%;
-}
-
-.faq .faq-img-content{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }

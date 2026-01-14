@@ -1,0 +1,11 @@
+@media (max-width: 1000px) {
+    .err{
+        padding: 1rem;
+    }
+    .hotelBooking{
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+}

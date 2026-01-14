@@ -1,0 +1,33 @@
+@media (max-width: 1000px){
+    .head{
+        padding: 1rem;
+    }
+    form{
+        padding: 1rem;
+        display: flex;
+        flex-direction: column;   
+    }
+    .payment{
+        height: auto;
+    }
+    .data-section{
+        width: 100%;
+    }
+    .data-section .a{
+        width: 100%;
+    }
+    .check{
+        width: 100%;
+    }
+    .pay-btn{
+        width: 100%;
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    .points{
+        flex-wrap: wrap;
+    }
+    form input:not(input[type="submit"]){
+        width: 100%;
+    }
+}

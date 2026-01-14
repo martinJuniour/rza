@@ -365,6 +365,7 @@ nav a {
 
 main {
     max-width: 100%;
+    position: relative;
     min-height: 1300px;
     margin: auto;
     background: linear-gradient(rgba(40, 67, 104, 0.687)), url('../../images/RZA-images/savannah\ biome.jpg') center;
@@ -495,5 +496,5 @@ footer .accessebility img {
     padding: 3% 10%;
     color: white;
     font-weight: 600;
-    font-size: 40px;
+    font-size: clamp(1rem, 6vw, 4rem);
 }

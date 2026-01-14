@@ -12,18 +12,22 @@
     header {
         background-attachment: fixed;
         background-position: center;
-        min-height: 700px;
+        min-height: 500px;
     }
 
     nav {
         width: 60%;
     }
+     .nav-btn img{
+        width: 100%;
+     }
 
     .banner {
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        gap: 2rem;
     }
 
     .banner .logo img {

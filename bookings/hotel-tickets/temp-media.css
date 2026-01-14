@@ -1,0 +1,21 @@
+@media (max-width: 1000px) {
+    main{
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-attachment: fixed;
+    }
+    .intro{
+        padding: 5rem;
+        position: unset;
+    }
+    .intro h1{
+        text-align: center;
+        /* font-size: 100px; */
+    }
+    .next{
+        position: unset;
+    }
+    .next a{
+        width: 100%;
+    }
+}

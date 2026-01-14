@@ -217,6 +217,10 @@ nav a {
     color: white;
 }
 
+main{
+    position: relative;
+}
+
 /* --------------------------------Change main on differnt pages */
 .loginMain {
     max-width: 100%;
@@ -226,6 +230,7 @@ nav a {
     background-repeat: no-repeat;
     background-size: cover;
 }
+
 /* ---------- Login styling for hotel booking error page */
 .hotelBooking {
     /* max-width: 100%; */
@@ -339,7 +344,7 @@ footer .accessebility img {
 }
 
 .content .headings h1 {
-    font-size: 150px;
+    font-size: clamp(3rem, 6vw, 5rem);
     font-weight: 600;
 }
 
@@ -364,7 +369,7 @@ form {
     text-align: start;
 }
 
-.input form input:not(input[type="submit"]){
+.input form input:not(input[type="submit"]) {
     background-color: rgb(108, 190, 108);
     height: 80px;
     width: 100%;
@@ -373,7 +378,8 @@ form {
     color: white;
     padding-left: 10px;
 }
-.input form input[type="submit"]{
+
+.input form input[type="submit"] {
     width: 20%;
 }
 
