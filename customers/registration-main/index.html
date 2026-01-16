@@ -82,27 +82,32 @@
         </section>
         <br>
         <section class="bottom-main">
-            
+
             <section class="data-section">
                 <form action="register.php" method="post">
                     <section class="form">
                         <span class="bold white">
                             <h1><mark>Please read all information and enter data where required</mark></h1>
                         </span>
-                        <input type="text" name="firstName" id="firstName" placeholder="Enter your First Name">
+                        <input type="text" name="firstName" id="firstName" placeholder="Enter your First Name"
+                            maxlength="40" minlength="3" required>
                         <br><br>
-                        <input type="text" name="lastName" id="lastName" placeholder="Enter yout last Name">
+                        <input type="text" name="lastName" id="lastName" placeholder="Enter yout last Name"
+                            maxlength="40" minlength="3" required>
                         <br><br>
-                        <input type="email" name="userName" id="userName" placeholder="Enter email address">
+                        <input type="email" name="userName" id="userName" placeholder="Enter email address"
+                            maxlength="40" minlength="3" required autocomplete="off" aria-disabled="false">
                         <br><br>
-                        <input type="password" name="passWord" id="passWord" placeholder="Enter Password">
+                        <input type="password" name="passWord" id="passWord" placeholder="Enter Password" maxlength="12"
+                            minlength="8" required autocomplete="off" aria-disabled="false">
                         <br><br>
                         <input type="password" name="passWordCon" id="passWordCon" placeholder="Confirm Password">
                         <br><br>
-                        <input type="text" name="postalCode" id="postalCode" placeholder="Enter your Post Code">
+                        <input type="text" name="postalCode" id="postalCode"
+                            placeholder="Enter your Post Code (Optional)">
                         <br><br>
                         <div class="check">
-                            <input type="checkbox" id="marketing" required>
+                            <input type="checkbox" id="marketing">
                             <input type="hidden" name="marketing" id="hiddenInput">
                             <label for="marketing">Receive Marketing Emails</label>
                         </div>
@@ -146,7 +151,7 @@
                         </div>
                         <div class="ts-cs-create">
 
-                            <input type="checkbox" name="termsConditions" id="termsConditions">
+                            <input type="checkbox" name="termsConditions" id="termsConditions" required>
 
                             <label for="termsConditions">I have read and <b>I Agree</b> to the set <a href=""><span
                                         class="orange">terms and conditions</span></a></label>
