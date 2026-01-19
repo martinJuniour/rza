@@ -1,4 +1,7 @@
 // Event Listeners
+document.addEventListener("DOMContentLoaded", ()=>{
+    checkBool();
+})
 document.getElementById('marketing').addEventListener('change', () => {
     checkBool();
 })

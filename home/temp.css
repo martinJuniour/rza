@@ -243,7 +243,7 @@ nav a {
     text-decoration: none;
     font-size: 20px;
 }
-.nav-items a:not(.home-link):hover{
+.nav-items a:not(.home-link, .log-out):hover{
     color: white;
 }
 .more-options {
@@ -379,13 +379,18 @@ nav a {
     min-width: 76%;
 }
 
-.bordered-btn button {
+.bordered-btn a {
     height: 100px;
     width: 300px;
     border-radius: 10px !important;
     font-size: 20px;
     color: white;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
+
 
 .bordered-btn {
     display: flex;
