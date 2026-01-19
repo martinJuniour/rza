@@ -1,11 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Room Administration</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="temp.css">
 </head>
+
 <body>
-    <h1>Hi</h1>
+    <main>
+        <section class="content">
+            <h1>This page is only available to Administartors</h1>
+            <section class="new">
+                <br>
+                <h2>RZA Rooms</h2>
+                <br>
+                <form action="newRoom.php" method="post">
+                    <label for="roomType">Room type</label><br><br>
+                    <select name="roomType" id="roomType">
+                        <option value="ERRR" selected>------</option>
+                        <option value="single">Single Bed</option>
+                        <option value="double">Double Bed</option>
+                        <option value="mixed">Family Room</option>
+                    </select>
+
+                    <br><br>
+
+                    <label for="availability">Room Availability</label><br><br>
+                    <select name="availability" id="availability">
+                        <option value="ERR">------</option>
+                        <option value="free">Available</option>
+                        <option value="booked">Not - Available</option>
+                    </select>
+                    <br><br>
+
+                    <input type="submit" class="btn btn-success" name="newRoom" id="newRoom" value="Post New Room">
+                </form>
+            </section>
+
+            <hr>
+
+            <section class="current">
+                <table>
+                    <tr class="headers">
+                        <th>Room ID</th>
+                        <th>Room Type</th>
+                        <th>Room Availability</th>
+                    </tr>
+                    <tr>
+
+                    </tr>
+                </table>
+            </section>
+        </section>
+    </main>
 </body>
+
 </html>

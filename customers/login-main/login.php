@@ -26,7 +26,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                         echo 'Good Step <br>';
                         $_SESSION['login'] = true;
                         $_SESSION['ID'] = $one['customerID'];  
-                        $_SESSION['firstName'] = $one['firstName']; 
+                        $_SESSION['firstName'] = $one['firstName'];
+                        $_SESSION['email'] = $one['username'];
                         header('Location: ../../home/index.php');
                     }else{
                         echo 'wrong password';

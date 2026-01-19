@@ -1,0 +1,18 @@
+main .content{
+    width : 80%
+}
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+select{
+    width: 40%;
+}
+table , tr, th{
+    border: 1px solid black;
+    text-align: center;
+}
+table{
+    width: 100%;
+}

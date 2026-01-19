@@ -1,6 +1,10 @@
 <?php
 session_start();
 include('../home/db.php');
+// Log 'Login' Error
+if(!isset($_SESSION['login'])){
+    $_SESSION['login'] = false;
+}
 // if($db){
 //     echo 'Atty';
 // }else{
@@ -39,7 +43,7 @@ include('../home/db.php');
                 </div>
                 <div class="actions">
                     <div class="action-btn">
-                        <a class="make-booking btn btn-warning" href="../bookings/safari-tickets/">Safari Right Now</a>
+                        <a class="make-booking btn btn-warning" href="../bookings/safari-tickets/index.php">Safari Right Now</a>
                     </div>
 
                     <?php
@@ -47,7 +51,7 @@ include('../home/db.php');
                     // Dont display sign up and login buttons if logged in
                     
                         if($_SESSION['login']){
-                            echo '<a href="../customers/login-main/.."  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
+                            echo '<a href="../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
                         }else{
                             echo '<div class="action-btn">
                         <a class="login btn btn-success" href="../customers/login-main/index.html">Login</a>
@@ -58,12 +62,6 @@ include('../home/db.php');
                         }
 
                     ?>
-                    <!-- <div class="action-btn">
-                        <a class="login btn btn-success" href="../customers/login-main/index.html">Login</a>
-                    </div>
-                    <div class="action-btn">
-                        <a class="new-account btn btn-success" href="../customers/registration-main/index.html">Sign Up</a>
-                    </div> -->
 
                 </div>
                 <div class="nav-btn">
@@ -81,13 +79,13 @@ include('../home/db.php');
             <div class="nav-items">
 
                 <div class="home">
-                    <a href="../home/index.html" class="home-link">Home</a>
+                    <a href="../home/index.php" class="home-link">Home</a>
                 </div>
-                <a href="../bookings/safari-tickets/index.html">Book a Safari Ticket</a>
-                <a href="../bookings/hotel-tickets/index.html">Book a Night in Hotel</a>
-                <a href="../home/termsAndCs.html">Terms and Conditions</a>
+                <a href="../bookings/safari-tickets/index.php">Book a Safari Ticket</a>
+                <a href="../bookings/hotel-tickets/index.php">Book a Night in Hotel</a>
+                <a href="../home/termsAndCs.php">Terms and Conditions</a>
 
-                <!-- <a href="../customers/login-main/index.html">Login</a> -->
+            
                 <?php
                 // Dont Display Login Button if already logged in
                 if($_SESSION['login']){
@@ -100,9 +98,9 @@ include('../home/db.php');
 
                 ?>
 
-                <a href="../customers/accessibility/index.html">Accessebility Settings</a>
-                <a href="../home/policyLinks.html">All Legal : RZA</a>
-                <a href="../home/contact.html">Report an Issue</a>
+                <a href="../customers/accessibility/index.php">Accessebility Settings</a>
+                <a href="../home/policyLinks.php">All Legal : RZA</a>
+                <a href="../home/contact.php">Report an Issue</a>
             </div>
         </nav>
 
@@ -145,7 +143,7 @@ include('../home/db.php');
                 <h3>Educational Materials</h3>
                 <div class="info">
                     <img src="../images/RZA-images/elephant.svg" alt="Elephant icon">
-                    <a href="">
+                    <a href="../bookings/safari-tickets/education.php">
                         <h5>Click to Explore What sites you might see</h5>
                     </a>
                 </div>
@@ -253,9 +251,9 @@ include('../home/db.php');
         <div class="col-2">
             <h4>Policy Links</h4>
             <div class="links">
-                <a href="../home/policyLinks.html#privacy">Privacy Policy</a>
-                <a href="../home/policyLinks.html#environmental">Environmental Policy</a>
-                <a href="../home/policyLinks.html#customer">Customer Policy</a>
+                <a href="../home/policyLinks.php#privacy">Privacy Policy</a>
+                <a href="../home/policyLinks.php#environmental">Environmental Policy</a>
+                <a href="../home/policyLinks.php#customer">Customer Policy</a>
             </div>
         </div>
 
@@ -267,7 +265,7 @@ include('../home/db.php');
         </div>
 
         <div class="accessebility">
-            <a href="../customers/accessibility/index.html"><img src="../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
+            <a href="../customers/accessibility/index.php"><img src="../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
             <h4>Accessebility</h4>
             <p>
                 Finally, don’t miss our makeshift pop-up events, which can include keeper

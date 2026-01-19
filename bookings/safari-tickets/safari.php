@@ -2,6 +2,9 @@
 // TEsting Succesful Data BAse connection
 include("../../home/db.php");
 session_start();
+if(!isset($_SESSION['login'])){
+    $_SESSION['login'] = false;
+}
 // if($db){
 //     echo 'successull connection';
 // }else{
@@ -27,7 +30,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // Test to see state of login
 
         // if($_SESSION['login'] = true){
-        //     echo "Thsi is the customer ID : " . $_SESSION['ID'];
+        //     echo "Thsi is the customer ID : " . $customerID;
         // }else{
         //     echo 'Login is false';
         // }

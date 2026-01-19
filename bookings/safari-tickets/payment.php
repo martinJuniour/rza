@@ -1,3 +1,16 @@
+<?php
+session_start();
+include("../../home/db.php");
+// Log 'Login' Error
+if(!isset($_SESSION['login'])){
+    $_SESSION['login'] = false;
+}
+// if($db){
+//     echo 'Atty';
+// }else{
+//     echo 'Not yet';
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -17,51 +30,81 @@
 
     <!-- Main section for all content -->
     <main>
-        <header>
+    <header>
+        <!-- Top banner with search bar -->
+        <section class="banner">
+            <div class="logo">
+                <img src="../../images/RZA-images/logo.svg" alt="RZA Logo" style="cursor: pointer;">
+            </div>
+            <div class="items">
+                <div class="search">
+                    <img src="../../images/RZA-images/searchIcon.svg" alt="Search Icon">
+                    <input type="text" id="search" placeholder="Enter a Search Item...">
+                </div>
+                <div class="actions">
+                    <div class="action-btn">
+                        <a class="make-booking btn btn-warning" href="index.php">Safari Right Now</a>
+                    </div>
 
-            <!-- Top banner with search bar -->
-            <section class="banner">
-                <div class="logo">
-                    <img src="../../images/RZA-images/logo.svg" alt="RZA Logo">
-                </div>
-                <div class="items">
-                    <div class="search">
-                        <img src="../../images/RZA-images/searchIcon.svg" alt="Search Icon">
-                        <input type="text" id="search" placeholder="Enter a Search Item...">
-                    </div>
-                    <div class="actions">
-                        <div class="action-btn">
-                            <a class="login btn btn-success">Martin.J</a>
-                        </div>
-                    </div>
-                    <div class="nav-btn">
-                        <img src="../../images/menu.png" id="nav-btn">
-                    </div>
-                </div>
-            </section>
-            <!-- main nav bar -->
-            <nav>
-                <div class="cancel">
-                    <p id="close-nav">
-                        →
-                    </p>
-                </div>
-                <div class="nav-items">
+                    <?php
 
-                    <div class="home">
-                        <a href="" class="home-link">Home</a>
+                    // Dont display sign up and login buttons if logged in
+                    
+                        if($_SESSION['login']){
+                            echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
+                        }else{ 
+                            echo '<div class="action-btn">
+                        <a class="login btn btn-success" href="../../customers/login-main/index.html">Login</a>
                     </div>
-                    <a href="">Book a Safari Ticket</a>
-                    <a href="">Book a Night in Hotel</a>
-                    <a href="">Terms and Conditions</a>
-                    <a href="">Create Account</a>
-                    <a href="">Login</a>
-                    <a href="">Accessebility Settings</a>
-                    <a href="">All Legal : RZA</a>
-                    <a href="">Report an Issue</a>
+                    <div class="action-btn">
+                        <a class="new-account btn btn-success" href="../../customers/registration-main/index.html">Sign Up</a>
+                    </div>';
+                        }
+
+                    ?>
+
                 </div>
-            </nav>
-        </header>
+                <div class="nav-btn">
+                    <img src="../../images/menu.png" id="nav-btn" alt="navigation icon">
+                </div>
+            </div>
+        </section>
+        <!-- main nav bar -->
+        <nav>
+            <div class="cancel">
+                <p id="close-nav">
+                    →
+                </p>
+            </div>
+            <div class="nav-items">
+
+                <div class="home">
+                    <a href="../../home/index.php" class="home-link">Home</a>
+                </div>
+                <a href="index.php">Book a Safari Ticket</a>
+                <a href="../hotel-tickets/index.php">Book a Night in Hotel</a>
+                <a href="../../home/termsAndCs.php">Terms and Conditions</a>
+
+            
+                <?php
+                // Dont Display Login Button if already logged in
+                if($_SESSION['login']){
+                    echo '<a href="../../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
+                }else{
+                    echo '<a href="../../customers/login-main/index.html">Login</a>';
+                    echo '<a href="../../customers/registration-main/index.html">Create Account</a>';
+                }
+
+
+                ?>
+
+                <a href="../../customers/accessibility/index.php">Accessebility Settings</a>
+                <a href="../../home/policyLinks.php">All Legal : RZA</a>
+                <a href="../../home/contact.php">Report an Issue</a>
+            </div>
+        </nav>
+
+    </header>
 
         <section class="payment">
 
@@ -118,9 +161,9 @@
         <div class="col-2">
             <h4>Policy Links</h4>
             <div class="links">
-                <a href="">Privacy Policy</a>
-                <a href="">Environmental Policy</a>
-                <a href="">Customer Policy</a>
+                <a href="../../home/policyLinks.php#privacy">Privacy Policy</a>
+                <a href="../../home/policyLinks.php#environmental">Environmental Policy</a>
+                <a href="../../home/policyLinks.php#customer">Customer Policy</a>
             </div>
         </div>
 
@@ -132,7 +175,7 @@
         </div>
 
         <div class="accessebility">
-            <a href=""><img src="../../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
+            <a href="../../customers/accessibility/index.php"><img src="../../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
             <h4>Accessebility</h4>
             <p>
                 Finally, don’t miss our makeshift pop-up events, which can include keeper

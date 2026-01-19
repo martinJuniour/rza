@@ -409,9 +409,13 @@ form {
     width: 50%;
 }
 
-.register button {
+.register a {
     height: 40%;
     padding: 2rem;
     width: 70%;
     border-radius: 10px !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
