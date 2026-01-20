@@ -4,7 +4,10 @@ include("../../home/db.php");
 // Log 'Login' Error
 if(!isset($_SESSION['login'])){
     $_SESSION['login'] = false;
-}    
+} 
+if(!isset($_SESSION['cancel'])){
+    $_SESSION['cancel'] = false;
+}
 // if($db){
 //     echo 'Atty';
 // }else{
@@ -187,8 +190,13 @@ if(!isset($_SESSION['login'])){
                     <br>
 
                     <input type="submit" name="makeBooking" value="Proceed to Payment" class="btn btn-success">
+                    </form>
 
-                </form>
+                    <form action="delBooking.php" method="POST" style="display: <?php echo $_SESSION['cancel'] ? 'block' : 'none'; ?>;">
+                        <input type="submit" class="btn btn-danger" name="cancelBooking" value ="Cancel Booking" >
+                    </form>
+
+                
             </div>
             <h1 class="below"><span class="white">See what to </span><span class="orange">Expect</span><span class="white"> down below</span></h1>
             <div class="images">

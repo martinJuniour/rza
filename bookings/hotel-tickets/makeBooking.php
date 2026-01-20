@@ -26,6 +26,40 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         // TEmporary Check to retriev booking ID
         $rand = bin2hex(random_bytes(34));
 
+        // Date Range Check Function
+
+        function rangeCheck($oneStart, $oneEnd, $twoStart, $twoEnd){
+
+            // Convert all variables to Valid dates
+            $oneStart = strtotime($oneStart);
+            $oneEnd = strtotime($oneEnd);
+            $twoStart = strtotime($twoStart);
+            $twoEnd = strtotime($twoEnd);
+            
+
+            // Check What is outputted
+            echo "One Start: ". $oneStart . "<br> One End: ". $oneEnd . "<br><hr>";
+            echo "Two Start Start: ".$twoStart . "<br> Two End: ".  $twoEnd . "<br>";
+
+
+            // Check agaisnt dates to detrimine ranges
+            if ($twoStart > $oneEnd){
+                // Okay - Rnages dont tpuuch
+                return true;
+            }
+            else if($twoStart < $oneEnd){
+                // Not okay - Compare with satrt date
+                if($twoEnd < $oneStart){
+                    // Okay -- Valid ranges dont touch
+                    return true;
+                }else{
+                    return false;
+                }
+            }else{
+                // They are eqaul --- no match
+                return false;
+            }
+        }
 
         // echo $rand;
 
@@ -43,6 +77,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $rooms[] = $roomType3;
         }
 
+        // Length of rooms is number of rooms bookeds
+        $roomLength = count($rooms);
         // TEst to see content of array
         // print_r($rooms);
 
@@ -77,9 +113,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                 $bookingID = $hotelEntity['bookingID'];
             }
 
+            // -----------------------------------------------------------------------------------
+            // Save Booking ID in session
+            $_SESSION['bookingID'] = $bookingID;
+            // -----------------------------------------------------------------------------------
+
             foreach($rooms as $room){
 
-                $getFreeRoom = "SELECT * FROM rooms where roomType = '$room' LIMIT 1";
+                $getFreeRoom = "SELECT * FROM rooms where roomAvailability = 'free' and roomType = '$room' LIMIT 1";
                 
                 $roomTry = $db -> query($getFreeRoom);
                 if($roomTry){
@@ -97,42 +138,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     if($checkBookingRange){
                         echo '<br> Qeury Ran Successfully -- NO SQL error in range check <br>';
                         if($checkBookingRange -> num_rows > 0){
-                            echo '<br> Room has existing range <br>';
-
-                            // Rnage Check Function
-                            function rangeCheck($oneStart, $oneEnd, $twoStart, $twoEnd){
-
-                                // Convert all variables to Valid dates
-                                $oneStart = strtotime($oneStart);
-                                $oneEnd = strtotime($oneEnd);
-                                $twoStart = strtotime($twoStart);
-                                $twoEnd = strtotime($twoEnd);
-                                
-
-                                // Check What is outputted
-                                echo "One Start: ". $oneStart . "<br> One End: ". $oneEnd . "<br><hr>";
-                                echo "Two Start Start: ".$twoStart . "<br> Two End: ".  $twoEnd . "<br>";
-
-
-                                // Check agaisnt dates to detrimine ranges
-                                if ($twoStart > $oneEnd){
-                                    // Okay - Rnages dont tpuuch
-                                    return true;
-                                }
-                                else if($twoStart < $oneEnd){
-                                    // Not okay - Compare with satrt date
-                                    if($twoEnd < $oneStart){
-                                        // Okay -- Valid ranges dont touch
-                                        return true;
-                                    }else{
-                                        return false;
-                                    }
-                                }else{
-                                    // They are eqaul --- no match
-                                    return false;
-                                }
-                            }
-                            
+                            echo '<br> Room has existing range <br>';           
                             $checkRangesStatuses = array();
                             while($roomRange = $checkBookingRange -> fetch_assoc()){
                                 $entryDate = $roomRange['bookingStartRange'];
@@ -141,9 +147,10 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
                                 if(rangeCheck($entryDate, $finDate, $startDay, $finDay) === true){
                                     echo '<br> <br>Okay Range <br><br>';
-                                    $checkRangesStatuses[] = true;
+                                    $checkRangesStatuses[] = 'yes';
                                 }else{
                                     echo '<br><br> Range Does not fit <br><br>';
+                                    $checkRangesStatuses[] = 'no';
                                 }
                             }
                             
@@ -186,16 +193,82 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                             }
 
                             // ONly run function of fase does not exist
-                            if(!in_array(true, $checkRangesStatuses)){
+                            if(in_array('no', $checkRangesStatuses)){
                                 // Dont run function
                                 echo '<hr> <hr> Range will not persist !!!!! <hr><hr>';
+                                $_SESSION['cancel'] = true;
                             }else{
-                                // Run Function
+                                // Run Function 
                                 intoHotelRooomBooking();
                                 echo '<hr><hr> Range is okay --- Booking can be made <hr><hr>';
                             }
                         }else{
-                            echo '<br> Room has not ben Booked jsut as yet <br>';
+                            echo '<br> Room has not ben Booked just as yet <br>';
+                            
+                            $checkRangesStatuses = array();
+                            while($roomRange = $checkBookingRange -> fetch_assoc()){
+                                $entryDate = $roomRange['bookingStartRange'];
+                                $finDate = $roomRange['bookingEndRange'];
+                                
+
+                                if(rangeCheck($entryDate, $finDate, $startDay, $finDay) === true){
+                                    echo '<br> <br>Okay Range <br><br>';
+                                    $checkRangesStatuses[] = 'yes';
+                                }else{
+                                    echo '<br><br> Range Does not fit <br><br>';
+                                    $checkRangesStatuses[] = 'no';
+                                }
+                            }
+                            
+                            // Check whats inide teh check list // IF FLase exists -- it means range will overlap therefore cnat make booking
+                            print_r($checkRangesStatuses);
+
+                            // Insert into Hotel Room Bookings Function
+                            function intoHotelRooomBooking(){
+
+                                // Globalise vaiables
+                               global  $roomID, $bookingID, $startDay, $finDay, $db;
+
+                                // Inserting into HotelRoomBookings
+                                $intoHotelRoomBookings = "INSERT INTO hotelBookedRooms (roomID, bookingID, bookingStartRange, bookingEndRange) VALUES (
+                                    '$roomID',
+                                    '$bookingID',
+                                    '$startDay',
+                                    '$finDay'
+                                )";
+                                // Booking only to be made if applied range does not overlap
+                                $intoTableHRB = $db -> query($intoHotelRoomBookings);
+                                if($intoTableHRB){
+                                
+                                    // MAke sure that same room is nor available again
+                                    $updateRoom = "UPDATE rooms SET roomAvailability = 'booked' WHERE roomID = '$roomID'";
+        
+                                    $checkAgainstUpdate = $db -> query($updateRoom);
+                                    if($checkAgainstUpdate){
+                                        echo "<br> Room Availability has been Updated <br>";
+                                    }else{
+                                        echo "<br> Faiel to Update RooOM Availabillty";
+                                        echo $db -> error;
+                                    }
+        
+                                    echo '<br> NEw Room Booking Successfullly Made <br>';
+                                }else{
+                                    echo '<br> Room Booking Was not made <br> Error in your COde Martin <br>';
+                                    echo $db -> error;
+                                }
+                            }
+
+                            // ONly run function of fase does not exist
+                            if(in_array('no', $checkRangesStatuses)){
+                                // Dont run function
+                                echo '<hr> <hr> Range will not persist !!!!! <hr><hr>';
+                                $_SESSION['cancel'] = true;
+                            }else{
+                                // Run Function 
+                                intoHotelRooomBooking();
+                                echo '<hr><hr> Range is okay --- Booking can be made <hr><hr>';
+                            }
+                            // ----------------------------------------------------------------------------------------------------------
                         }
                     }else{
                         'Error in SQL Syntax';
