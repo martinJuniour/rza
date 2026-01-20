@@ -21,6 +21,13 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             '$roomAvailability'
         )";
 
+        $run = $db -> query($insert);
+        if($run){
+            header('Location: index.php');
+        }else{
+            echo $db -> error;
+        }
+
     }
 }
 

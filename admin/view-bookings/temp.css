@@ -7,12 +7,28 @@ main{
     align-items: center;
 }
 select{
-    width: 40%;
+    width: 100%;
 }
-table , tr, th{
+th, td, tr{
     border: 1px solid black;
     text-align: center;
 }
 table{
+    width: 100%;
+}
+.top{
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    justify-content: space-between;
+}
+.new{
+    width: 50%;
+}
+.prices{
+    width: 50%;
+}
+.prices table{
+    height: 100%;
     width: 100%;
 }

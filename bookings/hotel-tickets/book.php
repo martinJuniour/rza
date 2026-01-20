@@ -24,6 +24,7 @@ if(!isset($_SESSION['login'])){
     <link rel="stylesheet" href="../../home/constants.css">
     <link rel="stylesheet" href="book-media.css">
     <script src="../../home/utilis.js" defer></script>
+    <script src="utilis.js" defer></script>
 </head>
 
 <body>
@@ -114,7 +115,7 @@ if(!isset($_SESSION['login'])){
                 </div>
 
                 <br><br>
-                <form action="" method="post">
+                <form action="makeBooking.php" method="post">
                     <input type="text" name="firstName" id="firstName" placeholder="Enter First Name">
                     <br><br>
                     <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name">
@@ -123,23 +124,46 @@ if(!isset($_SESSION['login'])){
                     <br><br>
                     <div class="rangeOfStay">
                         <label for="startDate">When would you stay start</label>
-                        <input type="date" name="startDate" id="startDate" placeholder="When would you start your stay">
+                        <input type="date" name="startDate" id="startDate">
                         <br><br>
                         <label for="finDate">When would you stay end</label>
-                        <input type="date" name="finDate" id="finDate"
-                            placeholder="When would you like to end your stay">
+                        <input type="date" name="finDate" id="finDate">
                         <br><br>
                     </div>
                     <div class="qty-visitors">
                         <label for="numOfVisitors">Enter Number of Visitors</label>
-                        <input type="number" name="numOfVisitors" id="numOfVisitors">
+                        <input type="number" name="numOfVisitors" id="numOfVisitors" min="1" max="12">
                         <br><br>
                     </div>
                     <br>
                     <div class="qty-rooms">
                         <label for="numOfRooms">Enter Number of rooms You'd like to book</label>
-                        <input type="number" name="numOfRooms" id="numOfRooms">
+                        <input type="number" name="numOfRooms" id="numOfRooms" max="3" min="1">
                         <br><br>
+                    </div>
+                    <div class="BTN-con">
+                        <br><br>
+                        <button onclick="getRoomTypes()" class="btn btn-warning" style="height: 80px;">Check and Confirm</button>
+                    </div>
+                    <div class="room-input">
+                        <br><br>
+                        <style>
+                            .rooms{
+                                display: flex;
+                                flex-direction: column;
+                                flex-wrap: wrap;
+                                gap: 1rem;
+                                justify-content: center;
+                                width: 50%;
+                                border: 3px solid orange;
+                                width: 100%;
+                                padding: 1%;
+                            }
+                            .rooms select{
+                                height: 50px;
+                            }
+                        </style>
+                        <section class="rooms" style="display: flex;"></section>
                     </div>
                     <br><br>    
                     <p class="disclaimer">
@@ -171,21 +195,6 @@ if(!isset($_SESSION['login'])){
                 <img src="../../images/RZA-images/pool.jpg" alt="Steaming room with wooden sits">
                 <img class="left-align" src="../../images/RZA-images/hotel2.jpg" alt="Outdoor hotel with trees around">
                 <img src="../../images/RZA-images/pillow.jpg" alt="Pillow on a chouch with an owl drawing">
-            </div>
-            <div class="smaller-section">
-                <h1><span class="white">Suggested Room Size</span><span class="green"> based</span><span class="white">
-                        on number of visitors</span></h1>
-
-                <div class="room">
-                    <h2><span class="white"><span class="orange">Double </span>Bed: Large (4.5m x 4.5m)</span></h2>
-                    <div class="room-img">
-                        <br>
-                        <img src="../../images/RZA-images/green-bed.jpg" alt="A green hotel bed">
-                        <div class="arrow-background">
-                            <img class="arrow" src="../../images/RZA-images/backArrWhite.png" alt="Arrow for next item">
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
 
