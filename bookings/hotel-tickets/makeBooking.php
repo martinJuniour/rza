@@ -79,8 +79,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
         // Length of rooms is number of rooms bookeds
         $roomLength = count($rooms);
+        echo $roomLength;
         // TEst to see content of array
-        // print_r($rooms);
+        print_r($rooms);
 
         $insertBooking = "INSERT INTO hotelBookings (customerID, bFirstName, bLastName, email, startDate, endDate, pricePayed, visitorQTY, tempCheck) VALUES (
             '$customerID',
@@ -105,6 +106,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $getBookingID = "SELECT bookingID FROM hotelBookings WHERE tempCheck = '$rand'";
         $getBookingIDCheck = $db -> query($getBookingID);
         if($getBookingIDCheck){
+
             echo 'Booking ID Succesfu;;y retrived';
 
 
@@ -118,9 +120,9 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
             $_SESSION['bookingID'] = $bookingID;
             // -----------------------------------------------------------------------------------
 
-            foreach($rooms as $room){
-
-                $getFreeRoom = "SELECT * FROM rooms where roomAvailability = 'free' and roomType = '$room' LIMIT 1";
+            foreach($rooms as &$room){
+                echo 'Printed ' .$room;
+                $getFreeRoom = "SELECT * FROM rooms where roomType = '$room' LIMIT 1";
                 
                 $roomTry = $db -> query($getFreeRoom);
                 if($roomTry){
@@ -135,10 +137,14 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     $getRoomBookingRange = "SELECT * FROM hotelBookedRooms WHERE roomID = '$roomID' ";
 
                     $checkBookingRange = $db -> query($getRoomBookingRange);
+
+                    // If room already has a pre booking
                     if($checkBookingRange){
                         echo '<br> Qeury Ran Successfully -- NO SQL error in range check <br>';
+
                         if($checkBookingRange -> num_rows > 0){
-                            echo '<br> Room has existing range <br>';           
+                            echo '<br> Room has existing range <br>';   // Contardicts FRee and Booked Status  
+
                             $checkRangesStatuses = array();
                             while($roomRange = $checkBookingRange -> fetch_assoc()){
                                 $entryDate = $roomRange['bookingStartRange'];
@@ -192,7 +198,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                                 }
                             }
 
-                            // ONly run function of fase does not exist
+                            // ONly run function if range does not exist
                             if(in_array('no', $checkRangesStatuses)){
                                 // Dont run function
                                 echo '<hr> <hr> Range will not persist !!!!! <hr><hr>';
@@ -203,27 +209,8 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                                 echo '<hr><hr> Range is okay --- Booking can be made <hr><hr>';
                             }
                         }else{
-                            echo '<br> Room has not ben Booked just as yet <br>';
-                            
-                            $checkRangesStatuses = array();
-                            while($roomRange = $checkBookingRange -> fetch_assoc()){
-                                $entryDate = $roomRange['bookingStartRange'];
-                                $finDate = $roomRange['bookingEndRange'];
-                                
 
-                                if(rangeCheck($entryDate, $finDate, $startDay, $finDay) === true){
-                                    echo '<br> <br>Okay Range <br><br>';
-                                    $checkRangesStatuses[] = 'yes';
-                                }else{
-                                    echo '<br><br> Range Does not fit <br><br>';
-                                    $checkRangesStatuses[] = 'no';
-                                }
-                            }
-                            
-                            // Check whats inide teh check list // IF FLase exists -- it means range will overlap therefore cnat make booking
-                            print_r($checkRangesStatuses);
-
-                            // Insert into Hotel Room Bookings Function
+                            // IF room is not booked
                             function intoHotelRooomBooking(){
 
                                 // Globalise vaiables
@@ -247,7 +234,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                                     if($checkAgainstUpdate){
                                         echo "<br> Room Availability has been Updated <br>";
                                     }else{
-                                        echo "<br> Faiel to Update RooOM Availabillty";
+                                        echo "<br> Failed to Update RooOM Availabillty";
                                         echo $db -> error;
                                     }
         
@@ -258,17 +245,6 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                                 }
                             }
 
-                            // ONly run function of fase does not exist
-                            if(in_array('no', $checkRangesStatuses)){
-                                // Dont run function
-                                echo '<hr> <hr> Range will not persist !!!!! <hr><hr>';
-                                $_SESSION['cancel'] = true;
-                            }else{
-                                // Run Function 
-                                intoHotelRooomBooking();
-                                echo '<hr><hr> Range is okay --- Booking can be made <hr><hr>';
-                            }
-                            // ----------------------------------------------------------------------------------------------------------
                         }
                     }else{
                         'Error in SQL Syntax';
@@ -282,6 +258,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     echo $db -> error;
                 }
             }
+            unset($room);
         }
         }else{
             echo 'Booking ID could not be retrived';
