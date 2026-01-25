@@ -24,6 +24,7 @@ if(!isset($_SESSION['login'])){
     <link rel="stylesheet" href="temp-media.css">
     <link rel="stylesheet" href="constants.css">
     <script src="utilis.js" defer></script>
+    <script src="mainAccess.js" defer></script>
 </head>
 
 <body>
@@ -109,7 +110,6 @@ if(!isset($_SESSION['login'])){
     <hr>
     <!-- Main section for all content -->
     <main>
-
         <section class="promotion">
             <div class="main-banner">
                 <h2><span class="bold">Visit us</span> <span class="green">Today</span></h2>

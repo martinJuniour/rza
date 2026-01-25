@@ -116,9 +116,24 @@ if(!isset($_SESSION['login'])){
                     cancellations and more.
             </p>
             <br><br>
-            <input type="text" value="#79026-992-2025MKO" readonly>
+            <div class="done">
+                <p class="p">
+                    <input type="text" value = "<?php echo $_SESSION['ref']; ?>" readonly>
+                    <br>
+                    <span class="copy">
+                        <button class="btn btn-link">Copy to Clipboard</button>
+                    </span>
+                </p>
+            </div>
 
 
+        </section>
+
+
+
+        <section class="go-home">
+            <a  class = "btn btn-warning" href="../../home/index.php">Go Back Home</a>
+             <a  class = "btn btn-success" href="index.php">Book another Ticket</a>
         </section>
     </main>
 

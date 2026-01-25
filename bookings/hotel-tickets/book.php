@@ -4,6 +4,7 @@ include("../../home/db.php");
 // Log 'Login' Error
 if(!isset($_SESSION['login'])){
     $_SESSION['login'] = false;
+    header("Location: error.html");
 } 
 if(!isset($_SESSION['cancel'])){
     $_SESSION['cancel'] = false;
@@ -118,7 +119,7 @@ if(!isset($_SESSION['cancel'])){
                 </div>
 
                 <br><br>
-                <form action="makeBooking.php" method="post">
+                <form action="room.php" method="post">
                     <input type="text" name="firstName" id="firstName" placeholder="Enter First Name">
                     <br><br>
                     <input type="text" name="lastName" id="lastName" placeholder="Enter Last Name">

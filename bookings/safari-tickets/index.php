@@ -2,7 +2,7 @@
 session_start();
 include("../../home/db.php");
 // Log 'Login' Error
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     $_SESSION['login'] = false;
 }
 // if($db){
@@ -49,16 +49,16 @@ if(!isset($_SESSION['login'])){
 
                     // Dont display sign up and login buttons if logged in
                     
-                        if($_SESSION['login']){
-                            echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
-                        }else{ 
-                            echo '<div class="action-btn">
+                    if ($_SESSION['login']) {
+                        echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
+                    } else {
+                        echo '<div class="action-btn">
                         <a class="login btn btn-success" href="../../customers/login-main/index.html">Login</a>
                     </div>
                     <div class="action-btn">
                         <a class="new-account btn btn-success" href="../../customers/registration-main/index.html">Sign Up</a>
                     </div>';
-                        }
+                    }
 
                     ?>
 
@@ -84,12 +84,12 @@ if(!isset($_SESSION['login'])){
                 <a href="../hotel-tickets/index.php">Book a Night in Hotel</a>
                 <a href="../../home/termsAndCs.php">Terms and Conditions</a>
 
-            
+
                 <?php
                 // Dont Display Login Button if already logged in
-                if($_SESSION['login']){
+                if ($_SESSION['login']) {
                     echo '<a href="../../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
-                }else{
+                } else {
                     echo '<a href="../../customers/login-main/index.html">Login</a>';
                     echo '<a href="../../customers/registration-main/index.html">Create Account</a>';
                 }
@@ -103,6 +103,16 @@ if(!isset($_SESSION['login'])){
             </div>
         </nav>
 
+
+        <div class="heading">
+            <h1>
+                Booking a <span class="green">safari</span><br>
+                <span class="green">visit</span> has never<br>
+                been easier<span class="green">.</span>
+            </h1>
+
+            <h2><span class="orange">Lets Begin Below</span></h2>
+        </div>
     </header>
 
     <!-- Main section for all content -->
@@ -190,7 +200,8 @@ if(!isset($_SESSION['login'])){
         </div>
 
         <div class="accessebility">
-            <a href="../../customers/accessibility/index.php"><img src="../../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
+            <a href="../../customers/accessibility/index.php"><img src="../../images/RZA-images/access.svg"
+                    alt="Accessibility Icon"></a>
             <h4>Accessebility</h4>
             <p>
                 Finally, don’t miss our makeshift pop-up events, which can include keeper

@@ -25,6 +25,9 @@ if(!isset($_SESSION['login'])){
     <link rel="stylesheet" href="../../home/constants.css">
     <link rel="stylesheet" href="temp-media.css">
     <script src="../../home/utilis.js" defer></script>
+    <script src="../../home/mainAccess.js" defer></script>
+    <script src="utilis.js" defer></script>
+
 </head>
 
 <body>
@@ -114,9 +117,9 @@ if(!isset($_SESSION['login'])){
             <form action="" class="access-form">
                 <h1><span class="white"><u>Accessebility Settings</u></span></h1>
                 <div class="option">
-                    <label for="font-size">Font Size</label>
+                    <label for="font-size">Scale</label>
                     <select name="font-size" id="font-size">
-                        <option value="default" selected>Default (Medium)</option>
+                        <option value="default">Default (Medium)</option>
                         <option value="small">Small</option>
                         <option value="large">Large</option>
                     </select>
@@ -124,14 +127,15 @@ if(!isset($_SESSION['login'])){
 
                 <br><br>
 
-                <div class="option">
+                <!-- Implemented Later -->
+                <!-- <div class="option">
                     <label for="display-theme">Display Theme</label>
                     <select name="display-theme" id="display-theme">
                         <option value="light">Default (Light)</option>
                         <option value="dark">Dark</option>
                     </select>
-                </div>
-                <br><br>
+                </div> -->
+                
                 <div class="option check-access">
                     <label for="view-images">View Images</label>
                     <input type="checkbox" name="view-images" id="view-images" checked>
