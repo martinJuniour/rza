@@ -1,0 +1,101 @@
+main {
+    min-height: 700px;
+    background: rgba(90, 167, 105, 0.805);
+    padding: 1% 0%;
+}
+
+.profile-green {
+    color: green;
+}
+
+.greeting {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.337);
+    padding: 2% 0%;
+    color: white;
+}
+
+.mainProfile {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+aside {
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.content {
+    width: 70%;
+    margin: 0% 1%;
+    ;
+    background-color: rgba(0, 0, 0, 0.173);
+    padding: 2%;
+    min-height: 400px;
+}
+
+#edit .form {
+    width: 80%;
+    height: fit-content;
+}
+
+form {
+    display: block;
+}
+
+form input:not(input[type="checkbox"]):not(input[type="submit"]) {
+    background-color: transparent;
+    width: 70%;
+    padding: 1%;
+    color: black;
+    border: 3px dashed white;
+}
+
+form input[type="email"] {
+    border: 3px dashed orange !important;
+    font-weight: 700 !important;
+}
+
+.check {
+    width: 70%;
+    display: flex;
+    flex-direction: column;
+}
+
+.pass {
+    font-size: 20px;
+    text-align: right;
+}
+
+#hotel-bookings table,
+#tickets table {
+    width: 100%;
+    text-align: center;
+    margin: 1% 0%;
+}
+
+.headers {
+    color: white;
+    font-size: 18px;
+}
+
+table tr,
+td,
+th {
+    padding: 1%;
+    border: 1px solid black;
+}
+
+.all section:not(.form) {
+    display: none;
+}
+
+header {
+    background: linear-gradient(rgba(18, 6, 6, 0.314), rgba(0, 0, 0, 0)), url('../../images/RZA-images/egg.jpg') center;
+    min-height: 500px;
+    background-size: cover;
+    background-attachment: fixed;
+}

@@ -25,6 +25,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
                     if(password_verify($passCode, $passWord)){
                         echo 'Good Step <br>';
                         $_SESSION['login'] = true;
+                        $_SESSION['loginCheck'] = 'just-logged-in';
                         $_SESSION['ID'] = $one['customerID'];  
                         $_SESSION['firstName'] = $one['firstName'];
                         $_SESSION['email'] = $one['username'];

@@ -2,7 +2,7 @@
 session_start();
 include('../home/db.php');
 // Log 'Login' Error
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     $_SESSION['login'] = false;
 }
 // if($db){
@@ -29,6 +29,62 @@ if(!isset($_SESSION['login'])){
 
 <body>
 
+    <!-- Login message styling -->
+    <style>
+        .successfull-login {
+            background-color: rgb(196, 125, 40);
+            ;
+            color: white;
+            text-align: center;
+            padding: .1%;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            z-index: 10000000;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+
+    <!-- Login message -->
+    <section class="successfull-login" id="login"></section>
+
+    <!-- Login dislay logic -->
+    <script>
+
+        // Function only runs one time
+        const check = "<?php echo $_SESSION['loginCheck']; ?>";
+
+        // If check is not empty --- Login Checked is existing
+        if (check === "just-logged-in") {
+            window.addEventListener('DOMContentLoaded', () => {
+                loginMessage();
+            });
+            console.log(check);
+            <?php
+            
+            $_SESSION['loginCheck'] = [];
+
+            ?>
+        }
+        // IF it is empty - Login Check has been delete dor didnt exist at All
+        else{
+            console.log('Login is not current');
+        }
+
+        // Source - https://stackoverflow.com/a
+        // Posted by Lew, modified by community. See post 'Timeline' for change history
+        // Retrieved 2026-01-25, License - CC BY-SA 3.0
+        function loginMessage() {
+            var message = document.getElementById("login")
+            var originalContent = message.innerHTML
+            message.innerHTML = "You have been logged in"
+            setTimeout(function () {
+                message.innerHTML = originalContent
+            }, 3000)
+        }
+
+    </script>
+
     <!-- Navigation Section : MAin HEader -->
     <header>
 
@@ -44,23 +100,24 @@ if(!isset($_SESSION['login'])){
                 </div>
                 <div class="actions">
                     <div class="action-btn">
-                        <a class="make-booking btn btn-warning" href="../bookings/safari-tickets/index.php">Safari Right Now</a>
+                        <a class="make-booking btn btn-warning" href="../bookings/safari-tickets/index.php">Safari Right
+                            Now</a>
                     </div>
 
                     <?php
 
                     // Dont display sign up and login buttons if logged in
                     
-                        if($_SESSION['login']){
-                            echo '<a href="../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
-                        }else{
-                            echo '<div class="action-btn">
+                    if ($_SESSION['login']) {
+                        echo '<a href="../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
+                    } else {
+                        echo '<div class="action-btn">
                         <a class="login btn btn-success" href="../customers/login-main/index.html">Login</a>
                     </div>
                     <div class="action-btn">
                         <a class="new-account btn btn-success" href="../customers/registration-main/index.html">Sign Up</a>
                     </div>';
-                        }
+                    }
 
                     ?>
 
@@ -85,13 +142,11 @@ if(!isset($_SESSION['login'])){
                 <a href="../bookings/safari-tickets/index.php">Book a Safari Ticket</a>
                 <a href="../bookings/hotel-tickets/index.php">Book a Night in Hotel</a>
                 <a href="../home/termsAndCs.php">Terms and Conditions</a>
-
-            
                 <?php
                 // Dont Display Login Button if already logged in
-                if($_SESSION['login']){
+                if ($_SESSION['login']) {
                     echo '<a href="../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
-                }else{
+                } else {
                     echo '<a href="../customers/login-main/index.html">Login</a>';
                     echo '<a href="../customers/registration-main/index.html">Create Account</a>';
                 }
@@ -217,9 +272,10 @@ if(!isset($_SESSION['login'])){
                             <p>
                                 Perfect. You heard right. RZA provides a highly rated (5 Star) safari themed lodge at
                                 low
-                                prices. If you're keen to sleep under the moonlight <a href="../bookings/hotel-tickets/index.html">begin your booking right
+                                prices. If you're keen to sleep under the moonlight <a
+                                    href="../bookings/hotel-tickets/index.php">begin your booking right
                                     here</a>.
-                            </p>    
+                            </p>
                         </li>
                     </ul>
                 </div>
@@ -229,7 +285,7 @@ if(!isset($_SESSION['login'])){
                 </div>
                 <hr>
                 <div class="bordered-btn">
-                    <a class="btn btn-warning" href="../bookings/safari-tickets/index.html">I'm ready to Tour</a>
+                    <a class="btn btn-warning" href="../bookings/safari-tickets/index.php">I'm ready to Tour</a>
                 </div>
             </div>
         </section>
@@ -265,7 +321,8 @@ if(!isset($_SESSION['login'])){
         </div>
 
         <div class="accessebility">
-            <a href="../customers/accessibility/index.php"><img src="../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
+            <a href="../customers/accessibility/index.php"><img src="../images/RZA-images/access.svg"
+                    alt="Accessibility Icon"></a>
             <h4>Accessebility</h4>
             <p>
                 Finally, don’t miss our makeshift pop-up events, which can include keeper
