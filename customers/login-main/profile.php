@@ -215,14 +215,14 @@ if ($checkData && $checkData->num_rows > 0) {
                                     </tr>
                                     <?php
 
-                                    $getBookings = "SELECT * FROM hotelBookings where customerID = '$customerID' ORDER BY createdAt";
+                                    $getBookings = "SELECT * FROM hotelBookings where customerID = '$customerID' ORDER BY createdAt DESC";
                                     $getBookingsQ = $db->query($getBookings);
 
                                     if ($getBookingsQ && $getBookingsQ->num_rows > 0) {
                                         while ($bk = $getBookingsQ->fetch_assoc()) {
                                             ?>
                                             <tr>
-                                                <td><?php echo "#" . $bk['tempChec']; ?></td>
+                                                <td><?php echo "#"; ?></td>
                                                 <td><?php echo $bk['startDate']; ?></td>
                                                 <td><?php echo $bk['endDate']; ?></td>
                                                 <td><?php echo $bk['visitorQTY']; ?></td>
