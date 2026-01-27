@@ -2,11 +2,11 @@
 session_start();
 include("../../home/db.php");
 // Log 'Login' Error
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     $_SESSION['login'] = false;
     header("Location: error.html");
-} 
-if(!isset($_SESSION['cancel'])){
+}
+if (!isset($_SESSION['cancel'])) {
     $_SESSION['cancel'] = false;
 }
 // if($db){
@@ -36,29 +36,30 @@ if(!isset($_SESSION['cancel'])){
 
     <!-- Main section for all content -->
     <main>
-    <header>
-        <!-- Top banner with search bar -->
-        <section class="banner">
-            <div class="logo">
-                <img src="../../images/RZA-images/logo.svg" alt="RZA Logo" style="cursor: pointer;">
-            </div>
-            <div class="items">
-                <div class="search">
-                    <img src="../../images/RZA-images/searchIcon.svg" alt="Search Icon">
-                    <input type="text" id="search" placeholder="Enter a Search Item...">
+        <header>
+            <!-- Top banner with search bar -->
+            <section class="banner">
+                <div class="logo">
+                    <img src="../../images/RZA-images/logo.svg" alt="RZA Logo" style="cursor: pointer;">
                 </div>
-                <div class="actions">
-                    <div class="action-btn">
-                        <a class="make-booking btn btn-warning" href="../safari-tickets/index.php">Safari Right Now</a>
+                <div class="items">
+                    <div class="search">
+                        <img src="../../images/RZA-images/searchIcon.svg" alt="Search Icon">
+                        <input type="text" id="search" placeholder="Enter a Search Item...">
                     </div>
+                    <div class="actions">
+                        <div class="action-btn">
+                            <a class="make-booking btn btn-warning" href="../safari-tickets/index.php">Safari Right
+                                Now</a>
+                        </div>
 
-                    <?php
+                        <?php
 
-                    // Dont display sign up and login buttons if logged in
-                    
-                        if($_SESSION['login']){
+                        // Dont display sign up and login buttons if logged in
+                        
+                        if ($_SESSION['login']) {
                             echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
-                        }else{ 
+                        } else {
                             echo '<div class="action-btn">
                         <a class="login btn btn-success" href="../../customers/login-main/index.html">Login</a>
                     </div>
@@ -67,49 +68,49 @@ if(!isset($_SESSION['cancel'])){
                     </div>';
                         }
 
+                        ?>
+
+                    </div>
+                    <div class="nav-btn">
+                        <img src="../../images/menu.png" id="nav-btn" alt="navigation icon">
+                    </div>
+                </div>
+            </section>
+            <!-- main nav bar -->
+            <nav>
+                <div class="cancel">
+                    <p id="close-nav">
+                        →
+                    </p>
+                </div>
+                <div class="nav-items">
+
+                    <div class="home">
+                        <a href="../../home/index.php" class="home-link">Home</a>
+                    </div>
+                    <a href="../safari-tickets/index.php">Book a Safari Ticket</a>
+                    <a href="../../home/termsAndCs.php">Terms and Conditions</a>
+
+
+                    <?php
+                    // Dont Display Login Button if already logged in
+                    if ($_SESSION['login']) {
+                        echo '<a href="../../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
+                    } else {
+                        echo '<a href="../../customers/login-main/index.html">Login</a>';
+                        echo '<a href="../../customers/registration-main/index.html">Create Account</a>';
+                    }
+
+
                     ?>
 
+                    <a href="../../customers/accessibility/index.php">Accessebility Settings</a>
+                    <a href="../../home/policyLinks.php">All Legal : RZA</a>
+                    <a href="../../home/contact.php">Report an Issue</a>
                 </div>
-                <div class="nav-btn">
-                    <img src="../../images/menu.png" id="nav-btn" alt="navigation icon">
-                </div>
-            </div>
-        </section>
-        <!-- main nav bar -->
-        <nav>
-            <div class="cancel">
-                <p id="close-nav">
-                    →
-                </p>
-            </div>
-            <div class="nav-items">
+            </nav>
 
-                <div class="home">
-                    <a href="../../home/index.php" class="home-link">Home</a>
-                </div>
-                <a href="../safari-tickets/index.php">Book a Safari Ticket</a>
-                <a href="../../home/termsAndCs.php">Terms and Conditions</a>
-
-            
-                <?php
-                // Dont Display Login Button if already logged in
-                if($_SESSION['login']){
-                    echo '<a href="../../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
-                }else{
-                    echo '<a href="../../customers/login-main/index.html">Login</a>';
-                    echo '<a href="../../customers/registration-main/index.html">Create Account</a>';
-                }
-
-
-                ?>
-
-                <a href="../../customers/accessibility/index.php">Accessebility Settings</a>
-                <a href="../../home/policyLinks.php">All Legal : RZA</a>
-                <a href="../../home/contact.php">Report an Issue</a>
-            </div>
-        </nav>
-
-    </header>
+        </header>
 
         <div class="all">
             <div class="inputs">
@@ -119,6 +120,11 @@ if(!isset($_SESSION['cancel'])){
                 </div>
 
                 <br><br>
+                <form action="delBooking.php" method="POST"
+                    style="display: <?php echo $_SESSION['cancel'] ? 'block' : 'none'; ?>;">
+                    <input type="submit" class="btn btn-danger" name="cancelBooking" value="Cancel Booking">
+                </form>
+                <br>
                 <form action="room.php" method="post">
                     <input type="text" name="firstName" id="firstName" placeholder="Enter First Name">
                     <br><br>
@@ -147,12 +153,13 @@ if(!isset($_SESSION['cancel'])){
                     </div>
                     <div class="BTN-con">
                         <br><br>
-                        <button onclick="getRoomTypes()" class="btn btn-warning" style="height: 80px;">Check and Confirm</button>
+                        <button onclick="getRoomTypes()" class="btn btn-warning" style="height: 80px;">Check and
+                            Confirm</button>
                     </div>
                     <div class="room-input">
                         <br><br>
                         <style>
-                            .rooms{
+                            .rooms {
                                 display: flex;
                                 flex-direction: column;
                                 flex-wrap: wrap;
@@ -163,13 +170,14 @@ if(!isset($_SESSION['cancel'])){
                                 width: 100%;
                                 padding: 1%;
                             }
-                            .rooms select{
+
+                            .rooms select {
                                 height: 50px;
                             }
                         </style>
                         <section class="rooms" style="display: flex;"></section>
                     </div>
-                    <br><br>    
+                    <br><br>
                     <p class="disclaimer">
                         By booking with us, you confirm your details are correct.
                         Bookings are only confirmed once you receive our confirmation.
@@ -184,22 +192,25 @@ if(!isset($_SESSION['cancel'])){
                     <br><br>
                     <div class="check">
                         <input type="checkbox" name="aggree" id="aggree" required>
-                        <label for="aggree"><span class="bold" style="font-size: 20px;font-weight: 400;">I aggree that the details above are corrcect and I have
+                        <label for="aggree"><span class="bold" style="font-size: 20px;font-weight: 400;">I aggree that
+                                the details above are corrcect and I have
                                 read and understood the above disclaimer</span></label>
                         <br><br>
                     </div>
                     <br>
 
                     <input type="submit" name="makeBooking" value="Proceed to Payment" class="btn btn-success">
-                    </form>
+                </form>
 
-                    <form action="delBooking.php" method="POST" style="display: <?php echo $_SESSION['cancel'] ? 'block' : 'none'; ?>;">
-                        <input type="submit" class="btn btn-danger" name="cancelBooking" value ="Cancel Booking" >
-                    </form>
+                <script>
+                    const check = "<?php echo $_SESSION['cancel']; ?>";
+                    check === "1" ? alert('Error Making Booking - It looks like we might not have a free room on that date. Try Choose another Date or Cancel booking in all') : console.log(check);
+                </script>
 
-                
+
             </div>
-            <h1 class="below"><span class="white">See what to </span><span class="orange">Expect</span><span class="white"> down below</span></h1>
+            <h1 class="below"><span class="white">See what to </span><span class="orange">Expect</span><span
+                    class="white"> down below</span></h1>
             <div class="images">
                 <img src="../../images/RZA-images/pool.jpg" alt="Steaming room with wooden sits">
                 <img class="left-align" src="../../images/RZA-images/hotel2.jpg" alt="Outdoor hotel with trees around">
@@ -237,7 +248,8 @@ if(!isset($_SESSION['cancel'])){
         </div>
 
         <div class="accessebility">
-            <a href="../../customers/accessibility/index.php"><img src="../../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
+            <a href="../../customers/accessibility/index.php"><img src="../../images/RZA-images/access.svg"
+                    alt="Accessibility Icon"></a>
             <h4>Accessebility</h4>
             <p>
                 Finally, don’t miss our makeshift pop-up events, which can include keeper

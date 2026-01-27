@@ -72,4 +72,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
+$bookingID = $_SESSION['bookingID'];
+
+// GEt Booking and delete it
+$delBooking = "DELETE FROM hotelBookings where bookingID = '$bookingID' ";
+
+$run = $db->query($delBooking);
+if ($run) {
+    echo 'Booking Deleted Successfully';
+
+    // Update Room Bookings
+    // Room Booking already updated in room.php
+
+    // Reset temporary session checks nad values
+    $_SESSION['bookingID'] = [];
+    // $_SESSION['cancel'] = [];
+    $_SESSION['rooms'] = [];
+
+    header("Location: book.php");
+
+} else {
+    echo 'Booking Deletion Failed';
+    echo $db->error;
+}
+
 ?>

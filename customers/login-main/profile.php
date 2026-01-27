@@ -116,7 +116,25 @@ if ($checkData && $checkData->num_rows > 0) {
                         <p class="btn btn-light points"> <span class="bold orange">Total Points: <?php
 
                         $getBookingTotal = "SELECT SUM(loyalty) AS bk_total FROM hotelbookings  WHERE customerID = '$customerID' ";
-                        $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID = '7e0e78f4-f85c-11f0-996b-2aee09dc0910'";
+
+                        // Get all customer IDS that Logged in user has had before
+                        $getTempID = "SELECT *  FROM tempCustomerSafari WHERE customerID = '$customerID'";
+
+                        $tempId = $db->query($getTempID);
+                        $idS = [];
+                        if ($tempId->num_rows > 0) {
+                            while ($id = $tempId->fetch_assoc()) {
+                                $nID = $id['customerTempID'];
+                                array_push($idS, $nID);
+                            }
+                        }else{
+                            // echo 'Rows not more than 0';
+                        }
+                        // print_r($idS);
+                        $listItems = "IN ('" . implode("' , '", $idS) . "' )";
+                        // echo $listItems; 
+
+                        $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID $listItems";
 
                         $getBookingTotalQ = $db->query($getBookingTotal)->fetch_assoc();
                         $getTicketTotalQ = $db->query($getTicketTotal)->fetch_assoc();
@@ -261,7 +279,6 @@ if ($checkData && $checkData->num_rows > 0) {
                                         <?php
                                         $getBookings = "SELECT * FROM tempCustomerSafari where customerID = '$customerID'";
                                         $getBookingsQ = $db->query($getBookings);
-
                                         if ($getBookingsQ && $getBookingsQ->num_rows > 0) {
                                             while ($bk = $getBookingsQ->fetch_assoc()) {
                                                 $tempId = $bk['customerTempID'];
@@ -329,7 +346,8 @@ if ($checkData && $checkData->num_rows > 0) {
                 </div>
 
                 <div class="accessebility">
-                    <a href="../accessibility/index.php"><img src="../../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
+                    <a href="../accessibility/index.php"><img src="../../images/RZA-images/access.svg"
+                            alt="Accessibility Icon"></a>
                     <h4>Accessebility</h4>
                     <p>
                         Finally, don’t miss our makeshift pop-up events, which can include keeper

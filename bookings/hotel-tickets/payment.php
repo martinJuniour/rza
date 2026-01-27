@@ -1,3 +1,20 @@
+<?php
+session_start();
+include("../../home/db.php");
+// Log 'Login' Error
+if (!isset($_SESSION['login'])) {
+    $_SESSION['login'] = false;
+    header("Location: error.html");
+}
+if (!isset($_SESSION['cancel'])) {
+    $_SESSION['cancel'] = false;
+}
+// if($db){
+//     echo 'Atty';
+// }else{
+//     echo 'Not yet';
+// }
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,11 +36,10 @@
     <!-- Main section for all content -->
     <main>
         <header>
-
             <!-- Top banner with search bar -->
             <section class="banner">
                 <div class="logo">
-                    <img src="../../images/RZA-images/logo.svg" alt="RZA Logo">
+                    <img src="../../images/RZA-images/logo.svg" alt="RZA Logo" style="cursor: pointer;">
                 </div>
                 <div class="items">
                     <div class="search">
@@ -32,11 +48,30 @@
                     </div>
                     <div class="actions">
                         <div class="action-btn">
-                            <a class="login btn btn-success">Martin.J</a>
+                            <a class="make-booking btn btn-warning" href="../safari-tickets/index.php">Safari Right
+                                Now</a>
                         </div>
+
+                        <?php
+
+                        // Dont display sign up and login buttons if logged in
+                        
+                        if ($_SESSION['login']) {
+                            echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
+                        } else {
+                            echo '<div class="action-btn">
+                        <a class="login btn btn-success" href="../../customers/login-main/index.html">Login</a>
+                    </div>
+                    <div class="action-btn">
+                        <a class="new-account btn btn-success" href="../../customers/registration-main/index.html">Sign Up</a>
+                    </div>';
+                        }
+
+                        ?>
+
                     </div>
                     <div class="nav-btn">
-                        <img src="../../images/menu.png" id="nav-btn">
+                        <img src="../../images/menu.png" id="nav-btn" alt="navigation icon">
                     </div>
                 </div>
             </section>
@@ -50,24 +85,37 @@
                 <div class="nav-items">
 
                     <div class="home">
-                        <a href="" class="home-link">Home</a>
+                        <a href="../../home/index.php" class="home-link">Home</a>
                     </div>
-                    <a href="">Book a Safari Ticket</a>
-                    <a href="">Book a Night in Hotel</a>
-                    <a href="">Terms and Conditions</a>
-                    <a href="">Create Account</a>
-                    <a href="">Login</a>
-                    <a href="">Accessebility Settings</a>
-                    <a href="">All Legal : RZA</a>
-                    <a href="">Report an Issue</a>
+                    <a href="../safari-tickets/index.php">Book a Safari Ticket</a>
+                    <a href="../../home/termsAndCs.php">Terms and Conditions</a>
+
+
+                    <?php
+                    // Dont Display Login Button if already logged in
+                    if ($_SESSION['login']) {
+                        echo '<a href="../../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
+                    } else {
+                        echo '<a href="../../customers/login-main/index.html">Login</a>';
+                        echo '<a href="../../customers/registration-main/index.html">Create Account</a>';
+                    }
+
+
+                    ?>
+
+                    <a href="../../customers/accessibility/index.php">Accessebility Settings</a>
+                    <a href="../../home/policyLinks.php">All Legal : RZA</a>
+                    <a href="../../home/contact.php">Report an Issue</a>
                 </div>
             </nav>
+
         </header>
 
         <section class="payment">
 
             <div class="head">
-                <h1><span class="white">Hotel <span class="orange">booking payment</span><span class="white"> for Martin Juniour</span></span></h1>
+                <h1><span class="white">Hotel <span class="orange">booking payment</span><span class="white"> for Martin
+                            Juniour</span></span></h1>
                 <h3><span class="white">Please input payment detail below</span></h3>
             </div>
 
@@ -96,9 +144,33 @@
                         <div class="submit-btn">
                             <input type="submit" name="payed" id="payed" value="Pay £226.99">
                         </div>
-                        <a href=""><span class="bold">You have 320 points.</span></a>
+                        <a href=""><span class="bold">You have
+
+                                <?php
+
+                                $customerID = $_SESSION['ID'];
+                                $getBookingTotal = "SELECT SUM(loyalty) AS bk_total FROM hotelbookings  WHERE customerID = '$customerID' ";
+                                $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID = '7e0e78f4-f85c-11f0-996b-2aee09dc0910'";
+
+                                $getBookingTotalQ = $db->query($getBookingTotal)->fetch_assoc();
+                                $getTicketTotalQ = $db->query($getTicketTotal)->fetch_assoc();
+
+                                if ($getBookingTotalQ && $getTicketTotalQ) {
+                                    $total = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
+                                    // echo $total;
+                                    // echo $getBookingTotalQ['bk_total'];
+                                    echo '<br><br>';
+                                    echo $getTicketTotalQ['ticket_total'];
+                                } else {
+                                    echo $db->error;
+                                }
+
+                                ?>
+
+                             points</span></a>
                         <div class="points">
-                            <a href=""><span class="orange">I want to use these</span><span class="white"> £100</span> </a>
+                            <a href=""><span class="orange">I want to use these</span><span class="white"> £100</span>
+                            </a>
                             <br><br>
                             <a href=""><span class="green">I want to save these</span></a>
                         </div>
