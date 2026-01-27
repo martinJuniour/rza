@@ -49,6 +49,7 @@ foreach($roomTypes as $r){
         echo 'Couldnt find specifuc room tyep for final price';
     }
 }
+$_SESSION['price'] = $price;
 
 
 // Do not insert into hotel Bookings before cgcking Availability

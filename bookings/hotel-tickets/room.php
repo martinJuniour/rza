@@ -260,7 +260,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $_SESSION['finDate'] = [];
 
             // Give option to cancel Boookings
-            // $_SESSION['cancel'] = true;
+            $_SESSION['cancel'] = true;
 
             header("Location: delBooking.php");
 

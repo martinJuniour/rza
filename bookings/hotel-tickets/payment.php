@@ -9,6 +9,7 @@ if (!isset($_SESSION['login'])) {
 if (!isset($_SESSION['cancel'])) {
     $_SESSION['cancel'] = false;
 }
+$_SESSION['price'] = 100;
 // if($db){
 //     echo 'Atty';
 // }else{
@@ -55,7 +56,7 @@ if (!isset($_SESSION['cancel'])) {
                         <?php
 
                         // Dont display sign up and login buttons if logged in
-                        
+
                         if ($_SESSION['login']) {
                             echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
                         } else {
@@ -130,7 +131,7 @@ if (!isset($_SESSION['cancel'])) {
                         <br><br>
                         <input type="text" name="cvv" id="cvv" placeholder="Enter CVV Code">
                         <div class="a">
-                            <a href="">What is a CVV</a>
+                            <a href="https://www.google.com/search?q=what+is+a+cvv&rlz=1C1GCEA_enGB1199GB1199&oq=what+is+a+cvv&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABKgCALACAA&sourceid=chrome&ie=UTF-8&safe=active&ssui=on">What is a CVV</a>
                         </div>
                         <br><br>
                         <div class="check">
@@ -142,37 +143,48 @@ if (!isset($_SESSION['cancel'])) {
 
                     <div class="pay-btn">
                         <div class="submit-btn">
-                            <input type="submit" name="payed" id="payed" value="Pay £226.99">
+                            <input type="submit" name="payed" id="payed" value="Pay £<?php echo $_SESSION['price']; ?>">
                         </div>
-                        <a href=""><span class="bold">You have
+                        <a href="">
+                            <span class="bold">You have
 
                                 <?php
-
                                 $customerID = $_SESSION['ID'];
                                 $getBookingTotal = "SELECT SUM(loyalty) AS bk_total FROM hotelbookings  WHERE customerID = '$customerID' ";
-                                $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID = '7e0e78f4-f85c-11f0-996b-2aee09dc0910'";
+
+                                // Get all customer IDS that Logged in user has had before
+                                $getTempID = "SELECT *  FROM tempCustomerSafari WHERE customerID = '$customerID'";
+
+                                $tempId = $db->query($getTempID);
+                                $idS = [];
+                                if ($tempId->num_rows > 0) {
+                                    while ($id = $tempId->fetch_assoc()) {
+                                        $nID = $id['customerTempID'];
+                                        array_push($idS, $nID);
+                                    }
+                                } else {
+                                    // echo 'Rows not more than 0';
+                                }
+                                // print_r($idS);
+                                $listItems = "IN ('" . implode("' , '", $idS) . "' )";
+                                // echo $listItems; 
+
+                                $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID $listItems";
 
                                 $getBookingTotalQ = $db->query($getBookingTotal)->fetch_assoc();
                                 $getTicketTotalQ = $db->query($getTicketTotal)->fetch_assoc();
 
                                 if ($getBookingTotalQ && $getTicketTotalQ) {
                                     $total = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
-                                    // echo $total;
-                                    // echo $getBookingTotalQ['bk_total'];
-                                    echo '<br><br>';
-                                    echo $getTicketTotalQ['ticket_total'];
+                                    echo $total;
                                 } else {
                                     echo $db->error;
-                                }
-
-                                ?>
-
-                             points</span></a>
-                        <div class="points">
-                            <a href=""><span class="orange">I want to use these</span><span class="white"> £100</span>
-                            </a>
-                            <br><br>
-                            <a href=""><span class="green">I want to save these</span></a>
+                                }; ?>
+                                points
+                            </span>
+                        </a>
+                        <div class="submit-btn">
+                            <input type="submit" name="payed" id="payed" value="Pay £<?php echo round($_SESSION['price'] - ($total / 100 * 6.9), 2); ?>">
                         </div>
                     </div>
                 </form>
