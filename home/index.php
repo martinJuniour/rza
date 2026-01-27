@@ -237,10 +237,10 @@ if (!isset($_SESSION['login'])) {
                 </p>
 
                 <section class="imaging">
-                    <img src="../images/R.jfif" alt="A lion">
-                    <img src="../images/R.jfif" alt="A lion">
-                    <img src="../images/R.jfif" alt="A lion">
-                    <img src="../images/R.jfif" alt="A lion">
+                    <img src="../images/R.jfif" alt="Placeholder image">
+                    <img src="../images/R.jfif" alt="Placeholder image">
+                    <img src="../images/R.jfif" alt="Placeholder image">
+                    <img src="../images/R.jfif" alt="Placeholder image">
                 </section>
             </div>
             <div class="bordered">
