@@ -9,7 +9,6 @@ if (!isset($_SESSION['login'])) {
 if (!isset($_SESSION['cancel'])) {
     $_SESSION['cancel'] = false;
 }
-$_SESSION['price'] = 100;
 // if($db){
 //     echo 'Atty';
 // }else{
@@ -121,7 +120,29 @@ $_SESSION['price'] = 100;
             </div>
 
             <div class="inputs">
-                <form action="" method="post">
+                <?php
+                
+                $roomType = $_SESSION['roomTypes'];
+
+// Get final Price
+$price = 0;
+foreach($roomType as $r){
+    $getPrice = "SELECT * FROM roomTypePrices WHERE roomType = '$r'";
+    $getPriceQ = $db -> query($getPrice);
+    if($getPriceQ){
+        echo 'Room type available';
+        while($rPrice = $getPriceQ -> fetch_assoc()){
+            $roomPrice = $rPrice['unitPrice'];
+
+            $price = (float) $price + (float) $roomPrice;
+            unset($roomPrice);
+        }
+    }else{
+        echo 'Couldnt find specifuc room tyep for final price';
+    }
+}        
+                ?>
+                <form action="makeBooking.php" method="post">
                     <div class="data-section">
                         <input type="text" name="fullName" id="fullName" placeholder="Enter Full Name on card">
                         <br><br>
@@ -143,8 +164,9 @@ $_SESSION['price'] = 100;
 
                     <div class="pay-btn">
                         <div class="submit-btn">
-                            <input type="submit" name="payed" id="payed" value="Pay £<?php echo $_SESSION['price']; ?>">
+                            <input type="submit" name="noPoints" id="payed" value="Pay £<?php echo $price; ?>">
                         </div>
+
                         <a href="">
                             <span class="bold">You have
 
@@ -180,11 +202,12 @@ $_SESSION['price'] = 100;
                                 } else {
                                     echo $db->error;
                                 }; ?>
-                                points
+                                points (£<?php echo round(($total / 100 * 6.9), 2); ?>)
                             </span>
                         </a>
+
                         <div class="submit-btn">
-                            <input type="submit" name="payed" id="payed" value="Pay £<?php echo round($_SESSION['price'] - ($total / 100 * 6.9), 2); ?>">
+                            <input type="submit" name="points" id="payed" value="Pay £<?php echo round($price - ($total / 100 * 6.9), 2); ?>">
                         </div>
                     </div>
                 </form>

@@ -21,7 +21,12 @@ $email = $_SESSION['email'];
 $visitorQTY = $_SESSION['numOfVisitors'];
 $startDay = $_SESSION['startDate'];
 $finDay = $_SESSION['finDate'];
-$roomTypes = $_SESSION['roomTypes'];
+$roomType = $_SESSION['roomType'];
+if(isset($_POST['noPoints'])){
+    $price = $_POST['noPoints'];
+}else if(isset()$_POST['points']){
+    $price = $_POST['points'];
+}
 
 // Array of available rooms
 $rooms = $_SESSION['rooms'];
@@ -33,23 +38,23 @@ $rand = bin2hex(random_bytes(18));
 $_SESSION['ref'] = $rand;
 
 // Get final Price
-$price = 0;
-foreach($roomTypes as $r){
-    $getPrice = "SELECT * FROM roomTypePrices WHERE roomType = '$r'";
-    $getPriceQ = $db -> query($getPrice);
-    if($getPriceQ){
-        echo 'Room type available';
-        while($rPrice = $getPriceQ -> fetch_assoc()){
-            $roomPrice = $rPrice['unitPrice'];
+// $price = 0;
+// foreach($roomType as $r){
+//     $getPrice = "SELECT * FROM roomTypePrices WHERE roomType = '$r'";
+//     $getPriceQ = $db -> query($getPrice);
+//     if($getPriceQ){
+//         echo 'Room type available';
+//         while($rPrice = $getPriceQ -> fetch_assoc()){
+//             $roomPrice = $rPrice['unitPrice'];
 
-            $price = (float) $price + (float) $roomPrice;
-            unset($roomPrice);
-        }
-    }else{
-        echo 'Couldnt find specifuc room tyep for final price';
-    }
-}
-$_SESSION['price'] = $price;
+//             $price = (float) $price + (float) $roomPrice;
+//             unset($roomPrice);
+//         }
+//     }else{
+//         echo 'Couldnt find specifuc room tyep for final price';
+//     }
+// }
+// $_SESSION['price'] = $price;
 
 
 // Do not insert into hotel Bookings before cgcking Availability
