@@ -24,8 +24,8 @@ $finDay = $_SESSION['finDate'];
 $roomType = $_SESSION['roomType'];
 if(isset($_POST['noPoints'])){
     $price = $_POST['noPoints'];
-}else if(isset()$_POST['points']){
-    $price = -
+}else if(isset($_POST['points'])){
+    $price = $_POST['points'];
 }
 
 // Array of available rooms
