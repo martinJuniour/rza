@@ -73,7 +73,7 @@ if ($checkData && $checkData->num_rows > 0) {
                     <div class="nav-items">
 
                         <div class="home">
-                            <a href="../home/index.php" class="home-link">Home</a>
+                            <a href="../../home/index.php" class="home-link">Home</a>
                         </div>
                         <a href="../../bookings/safari-tickets/index.php">Book a Safari Ticket</a>
                         <a href="../../bookings/hotel-tickets/index.php">Book a Night in Hotel</a>

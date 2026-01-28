@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,22 +46,78 @@
                 </div>
                 <div class="nav-items">
 
-                    <div class="home">
-                        <a href="" class="home-link">Home</a>
+                <div class="home">
+                        <a href="../../home/index.php" class="home-link">Home</a>
                     </div>
-                    <a href="">Book a Safari Ticket</a>
-                    <a href="">Book a Night in Hotel</a>
-                    <a href="">Terms and Conditions</a>
-                    <a href="">Create Account</a>
-                    <a href="">Login</a>
-                    <a href="">Accessebility Settings</a>
-                    <a href="">All Legal : RZA</a>
-                    <a href="">Report an Issue</a>
+                    <a href="../../bookings/safari-tickets/index.php">Book a Safari Ticket</a>
+                    <a href="../../bookings/hotel-tickets/index.php">Book a Night in Hotel</a>
+                    <a href="../../home/termsAndCs.php">Terms and Conditions</a>
+
+                    <a href="../registration-main/index.html">Create Account</a>
+
+                    <a href="../accessibility/index.php">Accessebility Settings</a>
+                    <a href="../../home/policyLinks.php">All Legal : RZA</a>
+                    <a href="../../home/contact.php">Report an Issue</a>
                 </div>
             </nav>
 
         </header>
 
+            <!-- Login message styling -->
+    <style>
+        .successfull-login {
+            background-color: green;
+            ;
+            color: white;
+            text-align: center;
+            /* padding: .1%; */
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 10000000;
+            transition: all 0.3s ease-in-out;
+        }
+    </style>
+
+    <!-- Login message -->
+    <section class="successfull-login" id="login"></section>
+
+    <!-- Login dislay logic -->
+    <script>
+
+        // Function only runs one time
+        const check = "<?php echo $_SESSION['exists']; ?>";
+
+        // If check is not empty --- Login Checked is existing
+        if (check === "true") {
+            window.addEventListener('DOMContentLoaded', () => {
+                loginMessage();
+            });
+            console.log(check);
+            <?php
+            
+            $_SESSION['exists'] = [];
+
+            ?>
+        }
+        // IF it is empty - Login Check has been delete dor didnt exist at All
+        else{
+            console.log('Login is not current');
+        }
+
+        // Source - https://stackoverflow.com/a
+        // Posted by Lew, modified by community. See post 'Timeline' for change history
+        // Retrieved 2026-01-25, License - CC BY-SA 3.0
+        function loginMessage() {
+            var message = document.getElementById("login")
+            var originalContent = message.innerHTML
+            message.innerHTML = "Looks Like you have an account with US -- Login Below";
+            setTimeout(function () {
+                message.innerHTML = originalContent
+            }, 6000)
+        }
+
+    </script>
 
         <section class="content">
             <div class="headings">
@@ -108,9 +167,9 @@
         <div class="col-2">
             <h4>Policy Links</h4>
             <div class="links">
-                <a href="">Privacy Policy</a>
-                <a href="">Environmental Policy</a>
-                <a href="">Customer Policy</a>
+                <a href="../../home/policyLinks.php#privacy">Privacy Policy</a>
+                <a href="../../home/policyLinks.php#environmental">Environmental Policy</a>
+                <a href="../../home/policyLinks.php#customer">Customer Policy</a>
             </div>
         </div>
 

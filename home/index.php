@@ -32,13 +32,13 @@ if (!isset($_SESSION['login'])) {
     <!-- Login message styling -->
     <style>
         .successfull-login {
-            background-color: rgb(196, 125, 40);
+            background-color: green;
             ;
             color: white;
             text-align: center;
-            padding: .1%;
+            /* padding: .1%; */
             position: fixed;
-            bottom: 0;
+            top: 0;
             width: 100%;
             z-index: 10000000;
             transition: all 0.3s ease-in-out;
@@ -77,10 +77,10 @@ if (!isset($_SESSION['login'])) {
         function loginMessage() {
             var message = document.getElementById("login")
             var originalContent = message.innerHTML
-            message.innerHTML = "You have been logged in"
+            message.innerHTML = "Successfull Login -- Welcome Back <?php echo $_SESSION['firstName']?>";
             setTimeout(function () {
                 message.innerHTML = originalContent
-            }, 3000)
+            }, 6    000)
         }
 
     </script>

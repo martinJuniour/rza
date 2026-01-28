@@ -23,25 +23,33 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
         $marketing = $_POST['marketing'];
         $postalCode = $_POST['postalCode'];
 
-        $insert = "INSERT INTO customers (firstName, lastNAme, username, passcode, marketing, postalCode) VALUES (
-            '$firstName',
-            '$lastName',
-            '$userName',
-            '$passCode',
-            '$marketing',
-            '$postalCode'
-        )";
 
-        $run = $db -> query($insert);
-        if($run){
-            // echo 'SUCCESS ACCOUNT REGISTRATION';
-            $_SESSION['register'] = true;
-            header("Location: done.php");
+        // Check if Customer Exists
+        $check = $db -> query("SELECT username AS username FROM customers WHERE username = '$userName'");
+        if($check -> num_rows > 0){
+            echo 'Looks Like you have an account with US -- Login Below';
+            $_SESSION['exists'] = 'true';
+            header("Location: ../login-main/index.php");
         }else{
-            echo $db -> error;
-            echo 'Error';
+            $insert = "INSERT INTO customers (firstName, lastNAme, username, passcode, marketing, postalCode) VALUES (
+                '$firstName',
+                '$lastName',
+                '$userName',
+                '$passCode',
+                '$marketing',
+                '$postalCode'
+            )";
+    
+            $run = $db -> query($insert);
+            if($run){
+                // echo 'SUCCESS ACCOUNT REGISTRATION';
+                $_SESSION['register'] = true;
+                header("Location: done.php");
+            }else{
+                echo $db -> error;
+                echo 'Error';
+            }
         }
-
     }
 
 }

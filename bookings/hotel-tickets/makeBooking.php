@@ -25,7 +25,7 @@ $roomType = $_SESSION['roomType'];
 if(isset($_POST['noPoints'])){
     $price = $_POST['noPoints'];
 }else if(isset()$_POST['points']){
-    $price = $_POST['points'];
+    $price = -
 }
 
 // Array of available rooms
@@ -74,7 +74,7 @@ if ($getBookingIDCheck) {
     echo 'Booking ID Succesfully retrived';
     // Store Booking ID in retrivable variable
     while ($hotelEntity = $getBookingIDCheck->fetch_assoc()) {
-        $bookingID = $hotelEntity['bookingID'];
+        $bookingID = $hot   elEntity['bookingID'];
         $_SESSION['bookingID'] = $bookingID;
     }
     // For each value in returned list of valid bookings
