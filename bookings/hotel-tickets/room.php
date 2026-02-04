@@ -278,7 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Save the available rooms in a session to send to make booking
             $_SESSION['rooms'] = $roomsNeeded;
             $_SESSION['roomTypes'] = $roomType;
-            // header("Location: payment.php");
+            header("Location: payment.php");
         }
     }
 }
