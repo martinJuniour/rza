@@ -32,16 +32,15 @@ if (!isset($_SESSION['login'])) {
     <!-- Login message styling -->
     <style>
         .successfull-login {
-            background-color: green;
-            ;
+            background-color: black;
             color: white;
             text-align: center;
-            /* padding: .1%; */
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 10000000;
             transition: all 0.3s ease-in-out;
+            font-size: 20px;
         }
     </style>
 
@@ -80,7 +79,7 @@ if (!isset($_SESSION['login'])) {
             message.innerHTML = "Successfull Login -- Welcome Back <?php echo $_SESSION['firstName']?>";
             setTimeout(function () {
                 message.innerHTML = originalContent
-            }, 6    000)
+            }, 6000)
         }
 
     </script>

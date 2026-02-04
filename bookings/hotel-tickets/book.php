@@ -19,7 +19,7 @@ if (!isset($_SESSION['cancel'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script src="/htdocs/home/mainAccess.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -199,7 +199,7 @@ if (!isset($_SESSION['cancel'])) {
                     </div>
                     <br>
 
-                    <input type="submit" name="makeBooking" value="Proceed to Payment" class="btn btn-success">
+                    <input type="submit" name="makeHotelBooking" value="Proceed to Payment" class="btn btn-success">
                 </form>
 
                 <script>

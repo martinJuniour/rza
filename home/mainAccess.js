@@ -6,6 +6,9 @@ window.addEventListener("DOMContentLoaded", () => {
     // Divide by 100 --- Zoom as a decimal
     const scale = localStorage.getItem('font-Size');
     document.querySelector('body').style.fontSize = scale.split(",")[1] + "%";
+    document.querySelectorAll('p:not(#close-nav)').forEach(p =>{
+        p.style.fontSize = scale.split(",")[1] + "%";
+    })
 
 
     // Viewing images
@@ -25,8 +28,14 @@ window.addEventListener("DOMContentLoaded", () => {
     if (bold) {
         if (bold === 'no') {
             document.querySelector('body').style.fontWeight = 'normal';
+            document.querySelectorAll('h1, h2, h3, h4, h5, h6, label, input, button, a, div, tr, th, td').forEach(h =>{
+                h.style.fontWeight = 'normal';
+            })
         } else {
             document.querySelector('body').style.fontWeight = '1000';
+            document.querySelectorAll('h1, h2, h3, h4, h5, h6, label, input, button, a, div, tr, th, td').forEach(h =>{
+                h.style.fontWeight = '1000';
+            })
         }
     }else{
         document.querySelector('body').style.fontWeight = 'normal';

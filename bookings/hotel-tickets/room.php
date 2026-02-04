@@ -14,11 +14,16 @@ if (!isset($_SESSION['login'])) {
 
 <?php
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['makeBooking'])) {
+    if (isset($_POST['makeHotelBooking'])) {
 
-        // Sedn to makeBooking age only after room Availability is confirmed
+        // Send to makeBooking age only after room Availability is confirmed
         $_SESSION['fname'] = $_POST['firstName'];
         $_SESSION['lname'] = $_POST['lastName'];
+
+        echo $_POST['firstName'];
+        echo $_POST['lastName'];
+
+
         $_SESSION['email'] = $_POST['email'];
         $_SESSION['numOfVisitors'] = $_POST['numOfVisitors'];
         $_SESSION['startDate'] = $_POST['startDate'];
@@ -250,15 +255,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 unset($roomBK);
             }
 
-
-            // Delete information stored in session
-            $_SESSION['fname'] = [];
-            $_SESSION['lname'] = [];
-            // Dont delete email
-            $_SESSION['numOfVisitors'] = [];
-            $_SESSION['startDate'] = [];
-            $_SESSION['finDate'] = [];
-
             // Give option to cancel Boookings
             $_SESSION['cancel'] = true;
 
@@ -282,7 +278,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Save the available rooms in a session to send to make booking
             $_SESSION['rooms'] = $roomsNeeded;
             $_SESSION['roomTypes'] = $roomType;
-            header("Location: payment.php");
+            // header("Location: payment.php");
         }
     }
 }

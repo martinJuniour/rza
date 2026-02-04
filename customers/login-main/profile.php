@@ -41,6 +41,7 @@ if ($checkData && $checkData->num_rows > 0) {
             <!-- <link rel="stylesheet" href="../registration-main/temp.css"> -->
             <script src="../../home/utilis.js" defer></script>
             <script src="utilis.js" defer></script>
+            <script src="/htdocs/home/mainAccess.js" defer></script>
         </head>
 
         <body>
@@ -127,23 +128,38 @@ if ($checkData && $checkData->num_rows > 0) {
                                 $nID = $id['customerTempID'];
                                 array_push($idS, $nID);
                             }
-                        }else{
+                        } else {
                             // echo 'Rows not more than 0';
                         }
                         // print_r($idS);
+                        // Return list of all temp IDs owned by Customer ID
                         $listItems = "IN ('" . implode("' , '", $idS) . "' )";
                         // echo $listItems; 
-
+                
                         $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID $listItems";
+
+                        $getUSed = "SELECT SUM(used) AS used FROM loyalty WHERE customerID = '$customerID'";
+
 
                         $getBookingTotalQ = $db->query($getBookingTotal)->fetch_assoc();
                         $getTicketTotalQ = $db->query($getTicketTotal)->fetch_assoc();
 
-                        if ($getBookingTotalQ && $getTicketTotalQ) {
-                            $total = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
-                            echo $total;
+                        $getUSedQ = $db->query($getUSed);
+                        if ($getUSedQ) {
+                            if ($getBookingTotalQ && $getTicketTotalQ) {
+                                $total = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
+                                $used = $getUSedQ->fetch_assoc()['used'];
+
+                                $finTotal = $total - $used;
+
+                                echo $finTotal;
+                            } else {
+                            }
                         } else {
-                            echo $db->error;
+                            if ($getBookingTotalQ && $getTicketTotalQ) {
+                                $total = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
+                                echo $total;
+                            }
                         }
 
 
@@ -182,7 +198,7 @@ if ($checkData && $checkData->num_rows > 0) {
 
                                         <br><br>
                                         <p>Password</p>
-                                        <a href="" class="btn btn-dark pass">Change Password</a>
+                                        <button onclick="changePass()" class="btn btn-dark pass">Change Password</button>
 
                                         <br><br>
 
@@ -229,7 +245,6 @@ if ($checkData && $checkData->num_rows > 0) {
                                         <th>Number of People</th>
                                         <th>Booking Status</th>
                                         <th>Actions</th>
-                                        <th>Points from Purcahse</th>
                                     </tr>
                                     <?php
 
@@ -251,9 +266,6 @@ if ($checkData && $checkData->num_rows > 0) {
                                                 </td>
                                                 <td><a href="../../bookings/hotel-tickets/delBooking.php" class="btn btn-danger">Delete
                                                         booking</a></td>
-                                                <td>
-                                                    <?php echo "+ " . $bk['loyalty']; ?>
-                                                </td>
                                             </tr>
 
                                             <?php
@@ -273,7 +285,6 @@ if ($checkData && $checkData->num_rows > 0) {
                                         <th>Number Of Tickets</th>
                                         <th>Date Visiting</th>
                                         <th>Actions</th>
-                                        <th>Points from Purcahse</th>
                                     </tr>
                                     <tr>
                                         <?php
@@ -295,7 +306,6 @@ if ($checkData && $checkData->num_rows > 0) {
                                                         <td><?php echo $BkDetails['dateOfVisitation']; ?></td>
                                                         <td><a href="../../bookings/hotel-tickets/delBooking.php" class="btn btn-danger">Delete
                                                                 booking</a></td>
-                                                        <td><?php echo "+ " . $BkDetails['loyalty']; ?></td>
                                                         <?php
                                                     }
                                                 }

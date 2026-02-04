@@ -5,6 +5,9 @@ include("../../home/db.php");
 if(!isset($_SESSION['login'])){
     $_SESSION['login'] = false;
 }
+if($_SESSION['rand'] === []){
+    header("Location: index.php");
+}
 // if($db){
 //     echo 'Atty';
 // }else{
@@ -15,11 +18,11 @@ if(!isset($_SESSION['login'])){
 <html lang="en">    
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script src="/htdocs/home/mainAccess.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        integrity="sha384-EVSTQN3 no/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="congrats.css">
     <link rel="stylesheet" href="../../home/constants.css">
     <link rel="stylesheet" href="../hotel-tickets/congrats-media.css">
@@ -118,7 +121,7 @@ if(!isset($_SESSION['login'])){
             <br><br>
             <div class="done">
                 <p class="p">
-                    <input type="text" value = "<?php echo $_SESSION['ref']; ?>" readonly>
+                    <input type="text" value = "<?php echo $_SESSION['rand']; ?>" readonly>
                     <br>
                     <span class="copy">
                         <button class="btn btn-link">Copy to Clipboard</button>

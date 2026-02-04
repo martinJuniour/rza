@@ -19,7 +19,7 @@ if (!isset($_SESSION['cancel'])) {
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script src="/htdocs/home/mainAccess.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -55,7 +55,7 @@ if (!isset($_SESSION['cancel'])) {
                         <?php
 
                         // Dont display sign up and login buttons if logged in
-
+                        
                         if ($_SESSION['login']) {
                             echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
                         } else {
@@ -121,26 +121,26 @@ if (!isset($_SESSION['cancel'])) {
 
             <div class="inputs">
                 <?php
-                
+
                 $roomType = $_SESSION['roomTypes'];
 
-// Get final Price
-$price = 0;
-foreach($roomType as $r){
-    $getPrice = "SELECT * FROM roomTypePrices WHERE roomType = '$r'";
-    $getPriceQ = $db -> query($getPrice);
-    if($getPriceQ){
-        echo 'Room type available';
-        while($rPrice = $getPriceQ -> fetch_assoc()){
-            $roomPrice = $rPrice['unitPrice'];
+                // Get final Price
+                $price = 0;
+                foreach ($roomType as $r) {
+                    $getPrice = "SELECT * FROM roomTypePrices WHERE roomType = '$r'";
+                    $getPriceQ = $db->query($getPrice);
+                    if ($getPriceQ) {
+                        echo 'Room type available';
+                        while ($rPrice = $getPriceQ->fetch_assoc()) {
+                            $roomPrice = $rPrice['unitPrice'];
 
-            $price = (float) $price + (float) $roomPrice;
-            unset($roomPrice);
-        }
-    }else{
-        echo 'Couldnt find specifuc room tyep for final price';
-    }
-}        
+                            $price = (float) $price + (float) $roomPrice;
+                            unset($roomPrice);
+                        }
+                    } else {
+                        echo 'Couldnt find specifuc room tyep for final price';
+                    }
+                }
                 ?>
                 <form action="makeBooking.php" method="post">
                     <div class="data-section">
@@ -152,7 +152,9 @@ foreach($roomType as $r){
                         <br><br>
                         <input type="text" name="cvv" id="cvv" placeholder="Enter CVV Code">
                         <div class="a">
-                            <a href="https://www.google.com/search?q=what+is+a+cvv&rlz=1C1GCEA_enGB1199GB1199&oq=what+is+a+cvv&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABKgCALACAA&sourceid=chrome&ie=UTF-8&safe=active&ssui=on">What is a CVV</a>
+                            <a
+                                href="https://www.google.com/search?q=what+is+a+cvv&rlz=1C1GCEA_enGB1199GB1199&oq=what+is+a+cvv&gs_lcrp=EgZjaHJvbWUyCQgAEEUYORiABDIHCAEQABiABDIHCAIQABiABDIHCAMQABiABDIHCAQQABiABDIHCAUQABiABDIHCAYQABiABDIHCAcQABiABDIHCAgQABiABDIHCAkQABiABKgCALACAA&sourceid=chrome&ie=UTF-8&safe=active&ssui=on">What
+                                is a CVV</a>
                         </div>
                         <br><br>
                         <div class="check">
@@ -164,13 +166,16 @@ foreach($roomType as $r){
 
                     <div class="pay-btn">
                         <div class="submit-btn">
-                            <input type="submit" name="noPoints" id="payed" value="Pay £<?php echo $price; ?>">
+                            <input type="submit" name="noPoints" id="payed" value="Pay £ <?php echo $price; ?>">
                         </div>
+
+                        <p class="bold orange">Get <?php echo round(($price / 35) ** 2, 0); ?> points on this purchase
+                        </p>
 
                         <a href="">
                             <span class="bold">You have
 
-                                <?php
+                                <?php   
                                 $customerID = $_SESSION['ID'];
                                 $getBookingTotal = "SELECT SUM(loyalty) AS bk_total FROM hotelbookings  WHERE customerID = '$customerID' ";
 
@@ -190,24 +195,43 @@ foreach($roomType as $r){
                                 // print_r($idS);
                                 $listItems = "IN ('" . implode("' , '", $idS) . "' )";
                                 // echo $listItems; 
-
+                                
                                 $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID $listItems";
+
+                                $getUSed = "SELECT SUM(used) AS used FROM loyalty WHERE customerID = '$customerID'";
+
+                                $getUSedQ = $db->query($getUSed);
 
                                 $getBookingTotalQ = $db->query($getBookingTotal)->fetch_assoc();
                                 $getTicketTotalQ = $db->query($getTicketTotal)->fetch_assoc();
 
-                                if ($getBookingTotalQ && $getTicketTotalQ) {
-                                    $total = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
-                                    echo $total;
+                                if ($getUSedQ && $getUSedQ->num_rows > 0) {
+                                    if ($getBookingTotalQ && $getTicketTotalQ) {
+                                        $fintotal = ($getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total']) - $getUSedQ -> fetch_assoc()['used'];
+                                        echo $fintotal;
+                                        $_SESSION['total'] = $fintotal;
+                                    } else {
+                                        echo $db->error;
+                                    }
                                 } else {
-                                    echo $db->error;
-                                }; ?>
-                                points (£<?php echo round(($total / 100 * 6.9), 2); ?>)
+                                    if ($getBookingTotalQ && $getTicketTotalQ) {
+                                        $fintotal = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
+                                        echo $fintotal;
+
+                                        $_SESSION['total'] = $fintotal;
+                                    } else {
+                                        echo $db->error;
+                                    }
+                                }
+
+                                ; ?>
+                                points (£<?php echo round(($fintotal / 100 * 6.9), 2); ?>)
                             </span>
                         </a>
 
-                        <div class="submit-btn">
-                            <input type="submit" name="points" id="payed" value="Pay £<?php echo round($price - ($total / 100 * 6.9), 2); ?>">
+                        <div class="submit-btn" style="display: <?php echo $fintotal > 0 ? "" : "none"; ?>">
+                            <input type="submit" name="points" id="payed"
+                                value="Pay £ <?php echo round($price - ($fintotal / 100 * 6.90), 2); ?>">
                         </div>
                     </div>
                 </form>

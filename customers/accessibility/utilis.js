@@ -36,9 +36,9 @@ function access() {
         // Zoom to 150%
         if (localStorage.getItem('font-Size')) {
             localStorage.removeItem('fontSize');
-            localStorage.setItem('font-Size', ['large', 300]);
+            localStorage.setItem('font-Size', ['large', 150]);
         } else {
-            localStorage.setItem('font-Size', ['large', 300]);
+            localStorage.setItem('font-Size', ['large', 150]);
         }
     }
 

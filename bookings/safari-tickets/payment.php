@@ -2,8 +2,11 @@
 session_start();
 include("../../home/db.php");
 // Log 'Login' Error
-if(!isset($_SESSION['login'])){
+if (!isset($_SESSION['login'])) {
     $_SESSION['login'] = false;
+}
+if ($_SESSION['toPaySafari'] === []) {
+    header("Location: index.php");
 }
 // if($db){
 //     echo 'Atty';
@@ -15,7 +18,7 @@ if(!isset($_SESSION['login'])){
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8"><script src="/htdocs/home/mainAccess.js" defer></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -30,29 +33,29 @@ if(!isset($_SESSION['login'])){
 
     <!-- Main section for all content -->
     <main>
-    <header>
-        <!-- Top banner with search bar -->
-        <section class="banner">
-            <div class="logo">
-                <img src="../../images/RZA-images/logo.svg" alt="RZA Logo" style="cursor: pointer;">
-            </div>
-            <div class="items">
-                <div class="search">
-                    <img src="../../images/RZA-images/searchIcon.svg" alt="Search Icon">
-                    <input type="text" id="search" placeholder="Enter a Search Item...">
+        <header>
+            <!-- Top banner with search bar -->
+            <section class="banner">
+                <div class="logo">
+                    <img src="../../images/RZA-images/logo.svg" alt="RZA Logo" style="cursor: pointer;">
                 </div>
-                <div class="actions">
-                    <div class="action-btn">
-                        <a class="make-booking btn btn-warning" href="index.php">Safari Right Now</a>
+                <div class="items">
+                    <div class="search">
+                        <img src="../../images/RZA-images/searchIcon.svg" alt="Search Icon">
+                        <input type="text" id="search" placeholder="Enter a Search Item...">
                     </div>
+                    <div class="actions">
+                        <div class="action-btn">
+                            <a class="make-booking btn btn-warning" href="index.php">Safari Right Now</a>
+                        </div>
 
-                    <?php
+                        <?php
 
-                    // Dont display sign up and login buttons if logged in
-                    
-                        if($_SESSION['login']){
+                        // Dont display sign up and login buttons if logged in
+                        
+                        if ($_SESSION['login']) {
                             echo '<a href="../../customers/login-main/profile.php"  class="btn btn-success">' . $_SESSION['firstName'] . '</a>';
-                        }else{ 
+                        } else {
                             echo '<div class="action-btn">
                         <a class="login btn btn-success" href="../../customers/login-main/index.html">Login</a>
                     </div>
@@ -61,50 +64,50 @@ if(!isset($_SESSION['login'])){
                     </div>';
                         }
 
+                        ?>
+
+                    </div>
+                    <div class="nav-btn">
+                        <img src="../../images/menu.png" id="nav-btn" alt="navigation icon">
+                    </div>
+                </div>
+            </section>
+            <!-- main nav bar -->
+            <nav>
+                <div class="cancel">
+                    <p id="close-nav">
+                        →
+                    </p>
+                </div>
+                <div class="nav-items">
+
+                    <div class="home">
+                        <a href="../../home/index.php" class="home-link">Home</a>
+                    </div>
+                    <a href="index.php">Book a Safari Ticket</a>
+                    <a href="../hotel-tickets/index.php">Book a Night in Hotel</a>
+                    <a href="../../home/termsAndCs.php">Terms and Conditions</a>
+
+
+                    <?php
+                    // Dont Display Login Button if already logged in
+                    if ($_SESSION['login']) {
+                        echo '<a href="../../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
+                    } else {
+                        echo '<a href="../../customers/login-main/index.html">Login</a>';
+                        echo '<a href="../../customers/registration-main/index.html">Create Account</a>';
+                    }
+
+
                     ?>
 
+                    <a href="../../customers/accessibility/index.php">Accessebility Settings</a>
+                    <a href="../../home/policyLinks.php">All Legal : RZA</a>
+                    <a href="../../home/contact.php">Report an Issue</a>
                 </div>
-                <div class="nav-btn">
-                    <img src="../../images/menu.png" id="nav-btn" alt="navigation icon">
-                </div>
-            </div>
-        </section>
-        <!-- main nav bar -->
-        <nav>
-            <div class="cancel">
-                <p id="close-nav">
-                    →
-                </p>
-            </div>
-            <div class="nav-items">
+            </nav>
 
-                <div class="home">
-                    <a href="../../home/index.php" class="home-link">Home</a>
-                </div>
-                <a href="index.php">Book a Safari Ticket</a>
-                <a href="../hotel-tickets/index.php">Book a Night in Hotel</a>
-                <a href="../../home/termsAndCs.php">Terms and Conditions</a>
-
-            
-                <?php
-                // Dont Display Login Button if already logged in
-                if($_SESSION['login']){
-                    echo '<a href="../../customers/login-main/logout.php" class="log-out" style="background-color: white;text-align: center;">Log Out</a>';
-                }else{
-                    echo '<a href="../../customers/login-main/index.html">Login</a>';
-                    echo '<a href="../../customers/registration-main/index.html">Create Account</a>';
-                }
-
-
-                ?>
-
-                <a href="../../customers/accessibility/index.php">Accessebility Settings</a>
-                <a href="../../home/policyLinks.php">All Legal : RZA</a>
-                <a href="../../home/contact.php">Report an Issue</a>
-            </div>
-        </nav>
-
-    </header>
+        </header>
 
         <section class="payment">
 
@@ -114,7 +117,7 @@ if(!isset($_SESSION['login'])){
             </div>
 
             <div class="inputs">
-                <form action="" method="post">
+                <form action="safari.php" method="post">
                     <div class="data-section">
                         <input type="text" name="fullName" id="fullName" placeholder="Enter Full Name on card">
                         <br><br>
@@ -136,9 +139,93 @@ if(!isset($_SESSION['login'])){
 
                     <div class="pay-btn">
                         <div class="submit-btn">
-                            <input type="submit" name="payed" id="payed" value="Pay £26.99">
+                            <input type="submit" name="payed" id="payed"
+                                value="Pay £<?php echo $_SESSION['toPaySafari']; ?>">
                         </div>
-                        <a href=""><span class="bold">Want to earn 32 points on this purchase?</span></a>
+
+                        <p class="bold orange">Get <?php echo round(($_SESSION['toPaySafari'] / 35) ** 2, 0); ?> points
+                            on this purchase
+                        </p>
+
+                        <a href=""
+                            style="display: <?php echo $_SESSION['ID'] && $_SESSION['login'] === true ? "none" : ""; ?>;"><span
+                                class="bold">Want to earn 32 points on this purchase?</span></a>
+
+                        <a class="bold"
+                            style="display: <?php echo $_SESSION['ID'] && $_SESSION['login'] === true ? "" : "none"; ?>;">You
+                            have
+
+                            <?php
+                            $customerID = $_SESSION['ID'];
+                            $getBookingTotal = "SELECT SUM(loyalty) AS bk_total FROM hotelbookings  WHERE customerID = '$customerID' ";
+
+                            // Get all customer IDS that Logged in user has had before
+                            $getTempID = "SELECT *  FROM tempCustomerSafari WHERE customerID = '$customerID'";
+
+                            $tempId = $db->query($getTempID);
+                            $idS = [];
+                            if ($tempId->num_rows > 0) {
+                                while ($id = $tempId->fetch_assoc()) {
+                                    $nID = $id['customerTempID'];
+                                    array_push($idS, $nID);
+                                }
+                            } else {
+                                // echo 'Rows not more than 0';
+                            }
+                            // print_r($idS);
+                            $listItems = "IN ('" . implode("' , '", $idS) . "' )";
+                            // echo $listItems; 
+                            
+                            $getTicketTotal = "SELECT SUM(loyalty) AS ticket_total FROM safariTicketBookings WHERE customerTempID $listItems";
+
+                            $getUSed = "SELECT SUM(used) AS used FROM loyalty WHERE customerID = '$customerID'";
+
+                            $getUSedQ = $db->query($getUSed);
+
+                            $getBookingTotalQ = $db->query($getBookingTotal)->fetch_assoc();
+                            $getTicketTotalQ = $db->query($getTicketTotal)->fetch_assoc();
+
+                            if ($getUSedQ && $getUSedQ->num_rows > 0) {
+                                if ($getBookingTotalQ && $getTicketTotalQ) {
+                                    $final = ($getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total']) - $getUSedQ->fetch_assoc()['used'];
+                                    echo $final;
+                                    $_SESSION['total'] = $final;
+                                } else {
+                                    echo $db->error;
+                                }
+                            } else {
+                                if ($getBookingTotalQ && $getTicketTotalQ) {
+                                    $final = $getBookingTotalQ['bk_total'] + $getTicketTotalQ['ticket_total'];
+                                    echo $final;
+
+                                    $_SESSION['total'] = $final;
+
+                                } else {
+                                    echo $db->error;
+                                }
+                            }
+
+                            ; ?>
+                            points (£
+                            <?php echo round(($final / 100 * 6.9), 2); ?>)
+                        </a>
+
+                        <div class="submit-btn"
+                            style="display: <?php echo $final > 0 ? "" : "none"; ?>; background-color: orange;">
+                            <input type="submit" name="points" id="payed" value="<?php
+
+                            if (round($_SESSION['toPaySafari'] - ($final / 100 * 6.90), 2) > 0) {
+                                echo "Pay £" . round($_SESSION['toPaySafari'] - ($final / 100 * 6.90), 2);
+
+                            } else {
+                                echo "FREE BOOKING ";
+                                $_SESSION['free-Safari'] = 'free';
+                            }
+
+
+                            ?>">
+                        </div>
+
                     </div>
                 </form>
             </div>
@@ -175,7 +262,8 @@ if(!isset($_SESSION['login'])){
         </div>
 
         <div class="accessebility">
-            <a href="../../customers/accessibility/index.php"><img src="../../images/RZA-images/access.svg" alt="Accessibility Icon"></a>
+            <a href="../../customers/accessibility/index.php"><img src="../../images/RZA-images/access.svg"
+                    alt="Accessibility Icon"></a>
             <h4>Accessebility</h4>
             <p>
                 Finally, don’t miss our makeshift pop-up events, which can include keeper

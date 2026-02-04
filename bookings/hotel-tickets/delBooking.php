@@ -14,6 +14,7 @@ if (!isset($_SESSION['login'])) {
 
 <?php
 
+// Ensuru=ing Deletion after line 76
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Cancel Booking
@@ -52,7 +53,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         echo "Room Updates successfully";
                     } else {
                         echo "Error in updating room";
-                    }
+                        }
 
                 }
                 unset($roomBK);
@@ -66,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             header("Location: book.php");
 
         } else {
-            echo 'Booking Deletion Failed';
+            echo 'Boo   king Deletion Failed';
             echo $db->error;
         }
     }
