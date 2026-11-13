@@ -1,4 +1,9 @@
 <?php
+
+// room.php – Automated Room Allocation
+// Checks room availability for each requested room type, prevents double-booking using rangeCheck(), and rolls back partial bookings if the full request can't be met.
+// Full explanation: README.md in this folder.
+
 session_start();
 include("../../home/db.php");
 // Log 'Login' Error
@@ -20,8 +25,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['fname'] = $_POST['firstName'];
         $_SESSION['lname'] = $_POST['lastName'];
 
-        echo $_POST['firstName'];
-        echo $_POST['lastName'];
+        // Test to see if post data is being received
+        // echo $_POST['firstName'];
+        // echo $_POST['lastName'];
 
 
         $_SESSION['email'] = $_POST['email'];
@@ -32,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $startDay = $_POST['startDate'];
         $finDay = $_POST['finDate'];
 
+        // Only three types of rooms available, check which ones are selected and save them
         $rooms = [];
         if (isset($_POST['roomType1'])) {
             $roomType1 = $_POST['roomType1'];
@@ -50,19 +57,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         function rangeCheck($oneStart, $oneEnd, $twoStart, $twoEnd)
         {
 
-            // Convert all variables to Valid dates
+            // Convert all variables to Valid datetime data type
             $oneStart = strtotime($oneStart);
             $oneEnd = strtotime($oneEnd);
             $twoStart = strtotime($twoStart);
             $twoEnd = strtotime($twoEnd);
 
 
-            // Check What is outputted
+            // Check What is outputted - test
             echo "One Start: " . $oneStart . "<br> One End: " . $oneEnd . "<br><hr>";
             echo "Two Start Start: " . $twoStart . "<br> Two End: " . $twoEnd . "<br>";
 
 
-            // Check agaisnt dates to detrimine ranges
+            // Check agaisnt dates to determine ranges
             if ($twoStart > $oneEnd) {
                 // Okay - Rnages dont tpuuch
                 return true;
@@ -86,10 +93,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // 1. Retrive desired rooms
 
         $roomsNeeded = [];
+        // Check when process ends if we have enough rooms to meet the booking requirements
         $roomCountNeeded = count($roomsNeeded);
         $roomsCount = count($rooms);
 
-        echo "<br><br> Rooms we need " . $roomsCount . "<br><br>";
+        echo "<br><br>Rooms we need " . $roomsCount . "<br><br>";
 
         // Must run until we hav enough desired rooms
         while ($err !== 1) {
